@@ -1,0 +1,25 @@
+section
+{
+  background-color: silver;
+  padding: 1em;
+}
+article
+{
+  display: flex;
+  background-color: seashell;
+  margin: 1em auto;
+  border-radius: 12px;
+  max-height: 800px;
+}
+article .likesBar
+{
+  width: 40px;
+  border-radius: 12px 0 0 12px;
+  background-color: #dfdfdf;
+}
+
+.far
+{
+  height: 25px;
+  color: red;
+}

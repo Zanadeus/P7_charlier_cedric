@@ -1,0 +1,10 @@
+main
+{
+  min-height: 100px;
+  max-width: 750px;
+  color: #192946;
+  background-color: #FFCF99;
+  margin: 2em auto;
+  border-radius: 12px;
+  text-align: center;
+}

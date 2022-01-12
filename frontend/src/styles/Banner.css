@@ -1,0 +1,23 @@
+header
+{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #192946;
+  height: 60px;
+}
+header div
+{
+  display: flex;
+  color: #FFCF99;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+header div p
+{
+  padding: 1em;
+}
+header img
+{
+  max-height: 35px;
+}
