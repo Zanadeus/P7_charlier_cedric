@@ -6,20 +6,36 @@ section
 article
 {
   display: flex;
+  flex-direction: row;
   background-color: seashell;
-  margin: 1em auto;
+  margin: 0 auto 1em;
   border-radius: 12px;
-  max-height: 800px;
+  max-height: 500px;
+  text-align: justify;
+  overflow: hidden;
 }
 article .likesBar
 {
-  width: 40px;
+  min-width: 30px;
   border-radius: 12px 0 0 12px;
   background-color: #dfdfdf;
+  display: flex;
+  justify-content: center;
 }
-
-.far
+article .post
 {
-  height: 25px;
-  color: red;
+  max-height: 300px;
+  overflow: hidden;
+}
+article .postHead
+{
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+article .postFeet
+{
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
