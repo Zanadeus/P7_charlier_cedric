@@ -9,14 +9,14 @@ header
   top: 0;
   width: 100%;
 }
-header div
+header nav
 {
   display: flex;
   color: #FFCF99;
   font-weight: bold;
   font-size: 1.1em;
 }
-header div p
+header nav p
 {
   padding: 1em;
 }

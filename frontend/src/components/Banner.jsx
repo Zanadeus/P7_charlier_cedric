@@ -1,5 +1,6 @@
 import '../styles/Banner.css'
 import logo from '../assets/icon-left-font-monochrome-white.svg'
+import { Link } from 'react-router-dom'
 
 function Banner() {
   return (
@@ -7,10 +8,14 @@ function Banner() {
     <div>
       <img src={logo} alt="logo de groupomania"/>
     </div>
-    <div>
+    <nav>
+      {/*
+      <Link to="/signin">S'inscrire</Link>
+      <Link to="/login">Se connecter</Link>
+      */}
       <p>S'inscrire </p>
       <p>Se connecter</p>
-    </div>
+    </nav>
     {/*
     <div>
       <Link to='newpost' className='p-4 text-custom '>
