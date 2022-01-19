@@ -9,7 +9,6 @@ function Banner() {
       <Link to="/"><img src={logo} alt="logo de groupomania"/></Link>
     </div>
     <nav>
-      <Link to="/">Accueil</Link>
       <Link to="/signin">S'inscrire</Link>
       <Link to="/login">Se connecter</Link>
       <Link to="/profile">Mon compte</Link>

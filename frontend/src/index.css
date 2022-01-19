@@ -31,6 +31,22 @@ main
   border-radius: 12px;
   text-align: center;
 }
+section
+{
+  background-color: silver;
+  padding: 1em;
+}
+article
+{
+  display: flex;
+  flex-direction: column;
+  background-color: seashell;
+  padding: 0 1em;
+  border-radius: 12px;
+  max-height: 500px;
+  text-align: justify;
+  overflow: hidden;
+}
 button, .button
 {
   border: 2px solid;
