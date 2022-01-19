@@ -16,9 +16,20 @@ header nav
   font-weight: bold;
   font-size: 1.1em;
 }
-header nav p
+header nav a
 {
+  text-decoration: solid;
   padding: 1em;
+  color: #FFCF99;
+  border-radius: 12px;
+}
+header nav a:hover, header nav a:focus
+{
+  text-decoration: solid;
+  padding: 1em;
+  color: #192946;
+  background: #FFCF99;
+  transition-duration: 300ms;
 }
 header img
 {
