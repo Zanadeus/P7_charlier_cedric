@@ -7,15 +7,15 @@ function Profile() {
     <section>
       <article>
         <h2>Paramètres du compte</h2>
-        <div class="accountParameter">
+        <div className="accountParameter">
           <p>Mon Pseudo</p>
           <p>user.pseudo</p>
         </div>
-        <div class="accountParameter">
+        <div className="accountParameter">
           <p>Mon adresse mail</p>
           <p>user.mail</p>
         </div>
-        <div class="accountParameter">
+        <div className="accountParameter">
           <p>Mon mot de passe</p>
           <p>user.password</p>
         </div>

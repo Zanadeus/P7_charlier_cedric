@@ -23,7 +23,7 @@ header nav a
   color: #FFCF99;
   border-radius: 12px;
 }
-header nav a:hover, header nav a:focus
+header nav :is(a:hover, a:focus)
 {
   text-decoration: solid;
   padding: 1em;
