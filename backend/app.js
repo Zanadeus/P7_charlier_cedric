@@ -49,6 +49,7 @@ const userRoads = require('./roads/users');
 const saucesRoads = require('./roads/sauces');
 
 app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', antiForcageId, helmet(), userRoads);
 app.use('/api/sauces', helmet(), saucesRoads);
 

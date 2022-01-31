@@ -26,13 +26,16 @@ exports.signup = (req, res, next) =>
 };
 
 exports.login = (req, res, next) => {
+  console.log(req.body);
   user.findOne({ email: req.body.email })
     .then(myUser => 
     {
+      console.log(myUser);
       if (!myUser) 
       {
-        return res.status(401).json({ message: 'wrong password or email' });
+        return res.status(401).json({ message: 'wrong email or password' });
       }
+
       bcrypt.compare(req.body.password, myUser.password)
         .then(valid => {
           if (!valid) {
@@ -41,6 +44,7 @@ exports.login = (req, res, next) => {
           //res.setHeader('Authorization', 'Bearer '+ newToken);
           res.status(200).json(
           {
+            message: 'Connection réussie !',
             userId: myUser._id,
             token: jwt.sign(
               { userId: myUser._id },
@@ -49,7 +53,7 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json('erreur1 depuis users.js :' + { error }));
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(500).json('erreur2 depuis users.js :' +{ error }));
 };

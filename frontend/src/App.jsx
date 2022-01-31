@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-import Banner from "./components/Banner"
+import Banner from "./components/Banner/Banner"
 import Feed from './pages/Feed'
 import Login from "./pages/Login"
 import Signin from "./pages/Signin"

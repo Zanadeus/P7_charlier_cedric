@@ -1,6 +1,6 @@
 import photo from '../assets/logo.svg'
 
-export const postList = [
+export const lolilol = [
   {
     id: '1ed',
     community: 'coucouTeam',

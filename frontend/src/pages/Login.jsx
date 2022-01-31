@@ -1,48 +1,31 @@
 import '../styles/Login.css'
+import { loginFunction } from '../components/Login/LoginUser'
+import React, { useEffect, useState } from 'react'
 
 function Login() {
-  /*
-  useEffect(() => 
-  {
-    fetch (http://localhost:3030/api/auth/login,
-    {
-      method: "POST",
-      headers: 
-      {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(
-      {
-        contact,
-        products
-      })
-    })
-    .then((response) => 
-    {
-      console.log(response.json);
-      return response.json();
-    })
+  const [submit, isSubmit] = useState(false);
+  const user = {
+    email: 'oc@oc.com',
+    password: 'oc'
+  }
 
-    .then((data) =>
-    {
-      localStorage.setItem("validatedOrder", JSON.stringify(data));
-      location.href = "thanksPage.html" ;
+  useEffect(() => {
+    loginFunction(user)
+    .then((response) => {
+      console.log(response);
+      sessionStorage.setItem('token', JSON.stringify(response.token));
+      console.log(submit);
     })
-    
-    .catch(function(error)//catch errors
-    {
-      alert(error);
-    })
-    }, [])
-  */
+  }, [submit])
+
+  //document.getElementById("")
   return (
     <main>
       <h1>Se connecter à Groupomania</h1>
       <section>
         <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
-          <form action="" method="post" >
+          <form action="" method="post" id="submitForm" onSubmit={() => isSubmit(true)}>
             <div >
               <label htmlFor="email">mail: </label><br/>
               <input type="email" name="email" id="email" required />
@@ -52,7 +35,7 @@ function Login() {
               <input type="password" name="password" id="password" required />
             </div>
             <div >
-              <input type="submit" value="Créer un compte" className="button"/>
+              <input type="submit" value="Se connecter" className="button" />
             </div>
           </form>
         </article>

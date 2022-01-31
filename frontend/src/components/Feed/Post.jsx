@@ -13,6 +13,7 @@ function Post({ value }){
       <div>
         <p className="postHead">Publié par {post.author} il y a {Math.floor((Date.now()-post.creationDate)/3600000)} heure(s)</p>
         <h2>{post.title}</h2>
+        <p>id = {post.id}</p>
         <div className="post">{post.post}</div>
         <p className="postFeet">Commentaires {Date.now()}</p>
       </div>

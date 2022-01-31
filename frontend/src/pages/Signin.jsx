@@ -21,7 +21,7 @@ function Signin() {
               <input type="text" name="password" id="password" required />
             </div>
             <div >
-              <input type="submit" value="Se connecter" className="button"/>
+              <input type="submit" value="Créer un compte" className="button"/>
             </div>
           </form>
         </article>
