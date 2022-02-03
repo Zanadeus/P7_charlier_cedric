@@ -1,7 +1,7 @@
 import '../styles/Feed.css'
 import Post from '../components/Feed/Post'
 import React, { useEffect, useState } from 'react'
-import { getList } from '../components/Feed/list'
+import { getList } from '../components/Feed/APIcalls'
 
 function Feed() 
 {

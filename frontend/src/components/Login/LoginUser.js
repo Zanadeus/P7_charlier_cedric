@@ -1,4 +1,4 @@
-export function loginFunction(user)
+export async function loginFunction(user)
 {
   console.log(user);
   const email = user.email;
@@ -28,6 +28,7 @@ export function loginFunction(user)
   })
 }
 
+/*
 export function getToken()
 {
   const tokenString = sessionStorage.getItem('token');
@@ -38,3 +39,4 @@ export function setToken(userToken)
 {
   sessionStorage.setItem('token', JSON.stringify(userToken));
 }
+*/

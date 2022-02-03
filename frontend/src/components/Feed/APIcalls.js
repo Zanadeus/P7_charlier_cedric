@@ -1,9 +1,9 @@
-export function getList() {
+export async function getList() {
   return fetch('http://localhost:8080/public/postList.json')
     .then(data => data.json())
 }
 
-export function setItem(item) {
+export async function setItem(item) {
  return fetch('http://localhost:8080/list', {
    method: 'POST',
    headers: {
