@@ -1,8 +1,7 @@
 import '../styles/Login.css'
-import { loginFunction } from '../components/Login/LoginUser'
-//import React, { useEffect, useState } from 'react'
-
-import { useForm } from "react-hook-form";
+import { loginFunction } from '../components/User/authAPI'
+import { getProfileFunction } from '../components/Profile/profileAPI';
+import { useForm } from "react-hook-form"
 
 function Login() 
 {
@@ -24,12 +23,14 @@ function Login()
       console.log(response);
       if (response.token) 
       {
-        sessionStorage.setItem('token', JSON.stringify(response.token));
+        sessionStorage.setItem('token', response.token);
+        //sessionStorage.setItem('pseudo', response.user.pseudo);
+        sessionStorage.setItem('userMail', response.user.email);
         window.location.reload();
       }
       else
       {
-        console.log(errors);
+        return console.log(errors);
       }
     })
   }
@@ -41,7 +42,6 @@ function Login()
         <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
           <form action="" method="post" id="submitForm" onSubmit={handleSubmit((data) => {
-            console.log(data);
             submitForm(data);
           })}>
             <div >

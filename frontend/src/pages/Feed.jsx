@@ -1,5 +1,5 @@
 import '../styles/Feed.css'
-import Post from '../components/Feed/Post'
+import TemplatePost from '../components/Feed/TemplatePost'
 import React, { useEffect, useState } from 'react'
 import { getList } from '../components/Feed/APIcalls'
 
@@ -22,7 +22,7 @@ function Feed()
           {
             posts.map((item) => 
             (
-              <Post value={item} />
+              <TemplatePost value={item} />
             ))
           }
       </section>

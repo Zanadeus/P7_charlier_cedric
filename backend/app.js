@@ -31,7 +31,7 @@ app.use((req, res, next) =>
 //limiter le nombre de requêtes (attaques DDOS)
 const antiDDOS = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limiter à 100 requêtes
+  max: 150 // limiter à 100 requêtes
 });
 app.use(antiDDOS);
 const antiForcageId = rateLimit({
@@ -46,11 +46,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 
 const userRoads = require('./roads/users');
-const saucesRoads = require('./roads/sauces');
+const profileRoads = require('./roads/profiles')
+const postsRoads = require('./roads/posts');
 
 app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/api/auth', antiForcageId, helmet(), userRoads);
-app.use('/api/sauces', helmet(), saucesRoads);
+app.use('/api/auth', /*antiForcageId,*/ helmet(), userRoads);
+app.use('/api/profile', helmet(), profileRoads);
+app.use('/api/posts', helmet(), postsRoads);
 
 module.exports = app;

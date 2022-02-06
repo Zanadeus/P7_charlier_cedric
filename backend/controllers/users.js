@@ -11,18 +11,19 @@ exports.signup = (req, res, next) =>
     return res.status(400).json({ message: 'Your password need to contain 8 to 30 characters' });
   }
   bcrypt.hash(req.body.password, 10)
-    .then(hash => 
-      {
-        let myUser = new user(
-        {
-          email: req.body.email,
-          password: hash
-        });
-        myUser.save()
-          .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-          .catch(error => res.status(400).json({ error }))
-      })
-    .catch(error => res.status(500).json({ error }));
+  .then(hash => 
+  {
+    let myUser = new user(
+    {
+      pseudo: req.body.pseudo,
+      email: req.body.email,
+      password: hash
+    });
+    myUser.save()
+    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+    .catch(error => res.status(400).json({ error }))
+  })
+  .catch(error => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {
@@ -45,7 +46,12 @@ exports.login = (req, res, next) => {
           res.status(200).json(
           {
             message: 'Connection réussie !',
+            user: myUser,
+            /*
             userId: myUser._id,
+            pseudo: myUser.pseudo,
+            email: myUser.email,
+            */
             token: jwt.sign(
               { userId: myUser._id },
               process.env.ACCESS_TOKEN_SECRET,

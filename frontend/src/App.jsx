@@ -31,8 +31,11 @@ function App() {
       <ConnectedBanner />
       <Routes>
         <Route exact path="/" element={<Feed />} />
-        <Route exact path="profile" element={<Profile />} />
+        <Route exact path="/profile/:pseudo" element={<Profile />} />
         <Route exact path="/logout" element={<Logout />} />
+        <Route exact path="/createPost" element={<Feed />} />
+        <Route exact path="/post" element={<Feed />} />
+        
 
         <Route exact path="*" element={<Pagenotfound />} />
       </Routes>

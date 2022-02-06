@@ -1,6 +1,7 @@
 function Logout()
 {
   sessionStorage.removeItem('token');
+  sessionStorage.removeItem('pseudo');
   window.location.reload();
   
   return (
