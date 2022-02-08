@@ -7,7 +7,7 @@ function TemplatePost({ value }){
   const post = value
   return(
     <article key={`${post.id}`} className='uniquePost' >
-      <Link to={`/post?id=${post.id}`} >
+      <Link to={`/post/${post.id}`} >
         <div className="likesBar">
           <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowUp} /></span>
           <p>{post.likes}</p>
@@ -17,7 +17,7 @@ function TemplatePost({ value }){
           <p className="postHead">Publié par {post.author} il y a {Math.floor((Date.now()-post.creationDate)/3600000)} heure(s)</p>
           <h2>{post.title}</h2>
           <p>id = {post.id}</p>
-          <div className="post">{post.post}</div>
+          <div className="post">{post.publication}</div>
           <p className="postFeet">Commentaires {Date.now()}</p>
         </div>
       </Link>

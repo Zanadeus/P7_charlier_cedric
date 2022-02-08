@@ -6,10 +6,10 @@ import { getProfileFunction, updateProfileFunction } from '../components/Profile
 function Profile() {
   const [user, setList] = useState([]);
 
-  //let userProfile = sessionStorage.getItem('pseudo');
-  let userProfile = sessionStorage.getItem('userMail');
+  let userName = JSON.parse(sessionStorage.getItem('user')).pseudo;
+  console.log(userName);
   useEffect(() => {
-    getProfileFunction(userProfile)
+    getProfileFunction(userName)
     .then((response) => {
       setList(response);
       console.log(response);
@@ -47,16 +47,42 @@ function Profile() {
         <h2>Paramètres du compte</h2>
         <form id="submitForm" onSubmit={handleSubmit((data) => {
             console.log(data);
-            submitForm(data);
+            submitForm(data.pseudo);
           })}>
             <div >
               <label htmlFor="pseudo">pseudo: </label><br/>
-              <input type="string" {...register("pseudo", { minLength: 3, maxLength: 30 })} defaultValue={user.pseudo} />
+              <input type="string" {...register("pseudo", 
+              { 
+                minLength: 
+                { 
+                  value: 4,
+                  message: "Le pseudo doit contenir entre 4 et 20 caractères"
+                },
+                maxLength: 
+                { 
+                  value: 20,
+                  message: "Le pseudo doit contenir entre 4 et 20 caractères"
+                } 
+              })} 
+              defaultValue={user.pseudo} />
               <p>{errors.pseudo?.message}</p>
             </div>
             <div >
               <label htmlFor="email">mail: </label><br/>
-              <input type="email" {...register("email", { minLength: 5, maxLength: 30 })} defaultValue={user.email} />
+              <input type="email" {...register("email", 
+              { 
+                minLength: 
+                { 
+                  value: 4,
+                  message: "Le pseudo doit contenir entre 4 et 30 caractères"
+                },
+                maxLength: 
+                { 
+                  value: 30,
+                  message: "Le pseudo doit contenir entre 4 et 30 caractères"
+                } 
+              })} 
+              defaultValue={user.email} />
               <p>{errors.email?.message}</p>
             </div>
             {/*

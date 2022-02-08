@@ -30,6 +30,7 @@ export async function loginFunction(user)
 export async function signinFunction(user)
 {
   console.log(user);
+  const pseudo = user.pseudo;
   const email = user.email;
   const password = user.password1;
   return fetch ("http://localhost:8080/api/auth/signup",
@@ -42,6 +43,7 @@ export async function signinFunction(user)
     },
     body: JSON.stringify(
     { 
+      pseudo,
       email,
       password
     })

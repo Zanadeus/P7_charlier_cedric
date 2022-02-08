@@ -4,20 +4,8 @@ const jwt = require('jsonwebtoken');
 const profile = require('../models/profiles');
 require('dotenv').config();
 
-exports.createProfile = (req, res, next) => 
-{
-  let myProfile = new profile(
-  {
-    pseudo: req.body.pseudo,
-    email: req.body.email,
-  });
-  myProfile.save()
-  .then(() => res.status(201).json({ message: 'Profil créé !' }))
-  .catch(error => res.status(500).json({ error }));
-};
-
 exports.getOneProfile = (req, res, next) => {
-  profile.findOne({email: req.params.email})
+  profile.findOne({pseudo: req.params.pseudo})
   .then(
     (oneProfile) => {
       res.status(200).json(oneProfile);

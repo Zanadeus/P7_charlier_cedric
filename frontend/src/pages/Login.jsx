@@ -1,6 +1,5 @@
 import '../styles/Login.css'
 import { loginFunction } from '../components/User/authAPI'
-import { getProfileFunction } from '../components/Profile/profileAPI';
 import { useForm } from "react-hook-form"
 
 function Login() 
@@ -24,8 +23,19 @@ function Login()
       if (response.token) 
       {
         sessionStorage.setItem('token', response.token);
-        //sessionStorage.setItem('pseudo', response.user.pseudo);
-        sessionStorage.setItem('userMail', response.user.email);
+        console.log("ceci est response.user : ");
+        console.log(response.user);
+
+        let userObject = JSON.stringify(response.user);
+        console.log("ceci est userObject string : ");
+        console.log(userObject);
+
+        sessionStorage.setItem('user', userObject);
+        let testuser = sessionStorage.getItem('user');
+        console.log("ceci est sessionStorage user : ");
+        console.log(testuser);
+        console.log(JSON.parse(testuser));
+
         window.location.reload();
       }
       else
@@ -45,13 +55,24 @@ function Login()
             submitForm(data);
           })}>
             <div >
-              <label htmlFor="email">mail: </label><br/>
-              <input type="email" {...register("email", { required: "Ce champ est requis" })} placeholder='aaa@exemple.com' required />
+            <label htmlFor="email">mail: </label><br/>
+              <input type="email" {...register("email", 
+              { required: "Ce champ est requis" })} 
+              placeholder='aaa@exemple.com' />
               <p>{errors.email?.message}</p>
             </div>
             <div >
               <label htmlFor="password">mot de passe: </label><br/>
-              <input type="password" {...register("password", { required: "Ce champ est requis" })} placeholder='password' required />
+              <input type="password" {...register("password", 
+              { 
+                required: "Ce champ est requis", 
+                minLength: 
+                { 
+                  value: 8,
+                  message: "Le mot de passe doit contenir 8 caractères ou plus"
+                }
+              })} 
+              placeholder='password' />
               <p>{errors.password?.message}</p>
             </div>
             <div >

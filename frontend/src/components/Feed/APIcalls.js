@@ -3,8 +3,13 @@ export async function getList() {
     .then(data => data.json())
 }
 
-export async function setItem(item) {
- return fetch('http://localhost:8080/list', {
+export async function getPost() {
+  return fetch('http://localhost:8080/public/postList.json')
+    .then(data => data.json())
+}
+
+export async function createPostFunction(item) {
+ return fetch('http://localhost:8080/api/posts/', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'

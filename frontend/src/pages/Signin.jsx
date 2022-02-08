@@ -1,6 +1,5 @@
 import '../styles/Signin.css'
 import { signinFunction } from '../components/User/authAPI'
-import { createProfile } from  '../components/Profile/profileAPI'
 import { useForm } from "react-hook-form";
 
 function Signin() 
@@ -30,14 +29,6 @@ function Signin()
       console.log(response);
     })
   }
-  function signinProfile(data)
-  {
-    createProfile(data)
-    .then((response) => 
-    {
-      console.log(response);
-    })
-  }
 
   return (
     <main>
@@ -50,7 +41,6 @@ function Signin()
             if (data.password1 === data.password2) 
             {
               signinUser(data);
-              signinProfile(data);
               alert("Merci pour votre inscription, vous pouvez maintenant vous connecter !")
             }
             else

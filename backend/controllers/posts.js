@@ -43,7 +43,7 @@ exports.createPost = (req, res, next) => {
   });
   
   newPost.save()
-  .then(() => res.status(201).json({ message: 'Nouvelle post enregistréé !'}))
+  .then(() => res.status(201).json({ message: 'Nouvelle publication enregistrée !'}))
   .catch(error => res.status(400).json({ message: error }));
 };
 
