@@ -34,11 +34,13 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-  const postObject = JSON.parse(req.body.post);
+  console.log(req.body);
+  console.log(req.body.item);
+  const postObject = req.body.item;
   delete postObject._id;
   const newPost = new Post({
-    ...postObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`,
+    ...postObject
+    //imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`,
     //imageUrl: `${req.protocol}://127.0.0.1:8081/pictures/${req.file.filename}`,
   });
   

@@ -10,8 +10,8 @@ function Feed()
   useEffect(() => {
     getList()
     .then((response) => {
-      //console.log(response['posts']);
-      setList(response.posts);
+      console.log(response);
+      setList(response);
     })
   }, [])
 
@@ -22,7 +22,7 @@ function Feed()
           {
             posts.map((item) => 
             (
-              <TemplatePost value={item} />
+              <TemplatePost value={item} key={`${item._id}`} />
             ))
           }
       </section>

@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
-  userId: { type: String, required: true }, //identifiant utilisateur
-  title: { type: String, minLength: 5, required: true }, //titre du post
+  //userId: { type: String, required: true }, //identifiant utilisateur
   author: { type: String, minLength: 3, required: true }, //créateur du post
-  creationDate: { type: String },
-  description: { type: String, minLength: 10, required: true }, //description de la sauce
-  imageUrl: { type: String, required: true }, //URL de l'image du post
+  titre: { type: String, minLength: 5, required: true }, //titre du post
+  texte: { type: String, default: '', required: true }, //texte de la publication
+  creationDate: { type: Number, default: Date.now() },//Date de création du post
+  commentNumber: { type: Number, default: '0'}, //nombre de commentaires
+  imageUrl: { type: String, default: '' }, //URL de l'image du post
 
   likes: { type: Number, default: '0', required: false }, //nombre de "likes"
   dislikes: { type: Number, default: '0', required: false }, //nombre de "dislikes"

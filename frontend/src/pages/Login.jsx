@@ -37,6 +37,7 @@ function Login()
         console.log(JSON.parse(testuser));
 
         window.location.reload();
+        window.location.replace("/");
       }
       else
       {
@@ -51,7 +52,7 @@ function Login()
       <section>
         <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
-          <form action="" method="post" id="submitForm" onSubmit={handleSubmit((data) => {
+          <form id="submitForm" onSubmit={handleSubmit((data) => {
             submitForm(data);
           })}>
             <div >

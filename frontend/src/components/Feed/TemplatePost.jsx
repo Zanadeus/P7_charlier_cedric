@@ -1,26 +1,77 @@
 import '../../styles/Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowDown, faCircleArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
+import { deletePostFunction } from './APIcalls'
 
 function TemplatePost({ value }){
   const post = value
+
+  function deleteMyPost(item)
+  {
+    deletePostFunction(item)
+    .then((response) => 
+    {
+      console.log(response);
+    })
+  }
+
+  function timePastSincePostCreation()
+  {
+    let timePastCounting = (Date.now()-post.creationDate)/1000;//temps en secondes
+    if (timePastCounting < 60) 
+    {
+      return `${Math.floor(timePastCounting)} seconde(s)`//temps en minutes
+    }
+    else if ( (timePastCounting/60) < 60) 
+    {
+      return `${Math.floor(timePastCounting/60)} minute(s)`
+    }
+    else if ((timePastCounting/(60*60)) < 24) 
+    {
+      return `${Math.floor(timePastCounting/(60*60))} heure(s)`
+    }
+    else if ((timePastCounting/(60*60*24)) < 365) 
+    {
+      return `${Math.floor(timePastCounting/(60*60*24))} jour(s)`
+    }
+    else if ((timePastCounting/(60*60*24)) > 365) 
+    {
+      return `${Math.floor(timePastCounting/(60*60*24*365))} an(s)`
+    }
+    else
+    {
+      return `erreur`
+    }
+  }
+
   return(
-    <article key={`${post.id}`} className='uniquePost' >
-      <Link to={`/post/${post.id}`} >
+    <article className='uniquePost' >
         <div className="likesBar">
           <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowUp} /></span>
           <p>{post.likes}</p>
           <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowDown} /></span>
         </div>
         <div>
-          <p className="postHead">Publié par {post.author} il y a {Math.floor((Date.now()-post.creationDate)/3600000)} heure(s)</p>
-          <h2>{post.title}</h2>
-          <p>id = {post.id}</p>
-          <div className="post">{post.publication}</div>
-          <p className="postFeet">Commentaires {Date.now()}</p>
+          <div className="postHead">
+            <p >
+              Publié par <Link to={`/profile/${post.author}`} > <strong>{` ${post.author} `}</strong> </Link> 
+              il y a {timePastSincePostCreation()}
+            </p>
+            <button className="fontAwesomeSize" onClick={
+              //deleteMyPost(post._id),
+              console.log("click !")
+              }>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          </div>
+          
+          <Link to={`/post/${post._id}`} >
+            <h2>{post.titre}</h2>
+            <div className="post">{post.texte}</div>
+            <p className="postFeet">{post.commentNumber} Commentaire(s) {post.creationDate}</p>
+          </Link>
         </div>
-      </Link>
       <Outlet />
     </article>
   )
