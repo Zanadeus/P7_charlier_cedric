@@ -1,11 +1,11 @@
 export async function updateProfileFunction(user)
 {
-  //console.log(user);
+  console.log(user);
   /*
   const pseudo = user.pseudo;
   const email = user.email;
   */
-  return fetch (`http://localhost:8080/api/profile/${user.pseudo}`,
+  return fetch (`http://localhost:8080/api/profile/${user.lastPseudo}`,
   {
     method: "PUT",
     headers: 
@@ -16,10 +16,6 @@ export async function updateProfileFunction(user)
     body: JSON.stringify(
     { 
       user
-      /*
-      pseudo,
-      email,
-      */
     })
   })
   .then((response) => 

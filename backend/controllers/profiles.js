@@ -1,5 +1,5 @@
-//Fonctionnement du code
 const bcrypt = require('bcrypt');
+const { json } = require('express');
 const jwt = require('jsonwebtoken');
 const profile = require('../models/profiles');
 require('dotenv').config();
@@ -21,6 +21,17 @@ exports.getOneProfile = (req, res, next) => {
 };
 
 exports.modifyProfile = (req, res, next) => {
+  profile.findOneAndUpdate({ pseudo: req.body.user.lastPseudo }, { ...req.body.user }, {new: true})
+  .then(() => res.status(200).json(
+    { 
+      message: `Objet modifié !`,
+      ...req.body.user
+    }))
+  .catch(error => res.status(400).json({ error }));
+};
+
+/*
+exports.modifyProfile = (req, res, next) => {
   const profileObject = req.file ?
   {
     ...JSON.parse(req.body.profile),
@@ -31,7 +42,7 @@ exports.modifyProfile = (req, res, next) => {
   {
     return res.status(403).json({ message : 'Invalid profile ID' });
   }
-  profile.updateOne({ pseudo: req.params.pseudo }, { ...profileObject, pseudo: req.params.pseudo })
+  profile.updateOne({ pseudo: req.body.user.pseudo }, { ...req.body.user })
   .then(() => res.status(200).json(
     { 
       message: 'Objet modifié !',
@@ -39,3 +50,4 @@ exports.modifyProfile = (req, res, next) => {
     }))
   .catch(error => res.status(400).json({ error }));
 };
+*/

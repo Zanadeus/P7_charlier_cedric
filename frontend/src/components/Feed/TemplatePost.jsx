@@ -9,10 +9,12 @@ function TemplatePost({ value }){
 
   function deleteMyPost(item)
   {
+    console.log("click !");
     deletePostFunction(item)
     .then((response) => 
     {
       console.log(response);
+      window.location.reload();
     })
   }
 
@@ -58,10 +60,9 @@ function TemplatePost({ value }){
               Publié par <Link to={`/profile/${post.author}`} > <strong>{` ${post.author} `}</strong> </Link> 
               il y a {timePastSincePostCreation()}
             </p>
-            <button className="fontAwesomeSize" onClick={
-              //deleteMyPost(post._id),
-              console.log("click !")
-              }>
+            <button className="fontAwesomeSize" onClick={() =>
+              deleteMyPost(post._id)
+            }>
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </div>

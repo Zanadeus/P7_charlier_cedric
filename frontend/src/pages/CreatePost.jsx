@@ -26,7 +26,7 @@ function CreatePost()
       <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-            data.author = JSON.parse(sessionStorage.getItem('user')).pseudo;
+            data.author = sessionStorage.getItem('userName');
             console.log(data);
             submitForm(data);
           })}>

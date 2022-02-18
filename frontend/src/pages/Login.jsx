@@ -25,7 +25,8 @@ function Login()
         sessionStorage.setItem('token', response.token);
         console.log("ceci est response.user : ");
         console.log(response.user);
-
+        sessionStorage.setItem('userName', response.user.pseudo);
+        /*
         let userObject = JSON.stringify(response.user);
         console.log("ceci est userObject string : ");
         console.log(userObject);
@@ -35,7 +36,7 @@ function Login()
         console.log("ceci est sessionStorage user : ");
         console.log(testuser);
         console.log(JSON.parse(testuser));
-
+        */
         window.location.reload();
         window.location.replace("/");
       }

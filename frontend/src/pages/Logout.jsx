@@ -1,7 +1,6 @@
 function Logout()
 {
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('user');
+  sessionStorage.clear();
   window.location.reload();
   window.location.replace("/");
   

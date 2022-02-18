@@ -3,7 +3,7 @@ import logo from '../../assets/icon-left-font-monochrome-white.svg'
 import { Outlet, Link } from 'react-router-dom'
 
 function ConnectedBanner() {
-  let userName = JSON.parse(sessionStorage.getItem('user')).pseudo;
+  let userName = sessionStorage.getItem('userName');
   console.log(userName);
   return (
   <header>
