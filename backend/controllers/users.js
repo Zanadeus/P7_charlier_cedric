@@ -47,11 +47,8 @@ exports.login = (req, res, next) => {
           {
             message: 'Connection réussie !',
             user: myUser,
-            /*
             userId: myUser._id,
-            pseudo: myUser.pseudo,
-            email: myUser.email,
-            */
+            
             token: jwt.sign(
               { userId: myUser._id },
               process.env.ACCESS_TOKEN_SECRET,

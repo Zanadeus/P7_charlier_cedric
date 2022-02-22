@@ -9,17 +9,7 @@ function Signin()
     register, 
     handleSubmit, 
     formState: {errors} 
-  } = useForm(
-    {
-      defaultValues:
-      {
-        /*
-        pseudo:"",
-        email:"",
-        password:""
-        */
-      }
-    });
+  } = useForm();
 
   function signinUser(data)
   {

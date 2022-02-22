@@ -37,8 +37,9 @@ function Login()
         console.log(testuser);
         console.log(JSON.parse(testuser));
         */
-        window.location.reload();
-        window.location.replace("/");
+       
+        //window.location.reload();
+        //window.location.replace("/");
       }
       else
       {

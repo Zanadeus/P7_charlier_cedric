@@ -1,5 +1,6 @@
 const express = require('express');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
+const { Sequelize } = require('sequelize');
 const path = require('path');
 const app = express();
 const rateLimit = require("express-rate-limit");
@@ -8,11 +9,27 @@ const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 
 //Connection à la BDD
-mongoose.connect(process.env.DB_LOGIN,
+const sequelize = new Sequelize("P7OCCHARLIER", "CHARLIER", "Charlieradmin7", {
+  dialect: "mysql",
+  host: "localhost"
+});
+try 
+{
+  sequelize.authenticate();
+  console.log('Connecté à la base de données MySQL!');
+} 
+catch (error) {
+  console.error('Impossible de se connecter, erreur suivante :', error);
+}
+
+
+/*
+mongoose.connect(process.env.MONGO_LOGIN,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+*/
 
 //Pouvoir effectuer les requètes trans-serveur (host:3000 et host:4200)
 app.use((req, res, next) => 

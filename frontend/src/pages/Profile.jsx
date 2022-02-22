@@ -6,31 +6,24 @@ import { getProfileFunction, updateProfileFunction } from '../components/Profile
 function Profile() {
   const [user, setList] = useState([]);
   let userName = sessionStorage.getItem('userName');
-
-  //fonction pour aller chercher les informations utilisateurs dans la BDD
+  console.log(user);
+  //rendering pour aller chercher les informations utilisateurs dans la BDD
   useEffect(() => {
     getProfileFunction(userName)
     .then((response) => {
       setList(response);
       console.log(response);
+      console.log(user);
     })
   }, [])
-
-  //appel des éléments du formulaire
-  const 
-  { register, handleSubmit, formState: {errors} } = useForm(
-    {
-      defaultValues:
-      {
-        pseudo: `Arthurus`,
-        email: `${user.email}`
-        //pseudo: `coucou + ${user.pseudo}`,
-        //email: `${user.email}`,
-        //password: user.password
-      }
-    });
-
-  //au clic sur le bouton "modifier profil", fonction de mise à jour du profil et reload de la page
+  //rendering pour que les defaultValues du formulaire prennent la réponse de getProfileFunction
+  useEffect(() => {
+    reset({
+      pseudo: `${user.pseudo}`,
+      email: `${user.email}`
+    }); 
+  }, [user])
+//au clic sur le bouton "modifier profil", fonction de mise à jour du profil et reload de la page
   function submitForm(data)
   {
     console.log(data);
@@ -38,11 +31,22 @@ function Profile() {
     .then((response) => 
     {
       console.log(response);
-      sessionStorage.setItem('userName', response.pseudo);
-      window.location.reload();
-      window.location.replace(`/profile/${response.pseudo}`);
+      //sessionStorage.setItem('userName', response.pseudo);
+      //window.location.reload();
+      //window.location.replace(`/profile/${response.pseudo}`);
     })
   }
+  //appel des éléments du formulaire
+  const 
+  { register, handleSubmit, formState: {errors}, reset } = useForm(
+    {
+      defaultValues:
+      {
+        pseudo: `${user.pseudo}`,
+        email: `${user.email}`
+        //password: user.password
+      }
+    });
 
   return (
     <main>
@@ -69,7 +73,7 @@ function Profile() {
                     message: "Le pseudo doit contenir entre 4 et 20 caractères"
                   } 
                 })} 
-                defaultValue={user.pseudo} />
+                />
                 <p>{errors.pseudo?.message}</p>
               </div>
               <div >
@@ -87,7 +91,7 @@ function Profile() {
                     message: "Le pseudo doit contenir entre 4 et 30 caractères"
                   } 
                 })} 
-                defaultValue={user.email} />
+                />
                 <p>{errors.email?.message}</p>
               </div>
               {/*
@@ -113,7 +117,16 @@ function Profile() {
                 <button type="submit" className="button">
                   Modifier le profil
                 </button>
+                <button type="button" className="button" onClick={() => {
+                  reset({
+                    pseudo: `${user.pseudo}`,
+                    email: `${user.email}`
+                  }); 
+                }}>
+                  reset form
+                </button>
               </div>
+              
             </form>
         </article>
       </section>
