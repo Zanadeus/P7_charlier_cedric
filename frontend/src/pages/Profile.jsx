@@ -19,7 +19,7 @@ function Profile() {
   //rendering pour que les defaultValues du formulaire prennent la réponse de getProfileFunction
   useEffect(() => {
     reset({
-      pseudo: `${user.pseudo}`,
+      userName: `${user.userName}`,
       email: `${user.email}`
     }); 
   }, [user])
@@ -31,9 +31,9 @@ function Profile() {
     .then((response) => 
     {
       console.log(response);
-      //sessionStorage.setItem('userName', response.pseudo);
-      //window.location.reload();
-      //window.location.replace(`/profile/${response.pseudo}`);
+      sessionStorage.setItem('userName', response.userName);
+      window.location.reload();
+      window.location.replace(`/profile/${response.userName}`);
     })
   }
   //appel des éléments du formulaire
@@ -42,7 +42,7 @@ function Profile() {
     {
       defaultValues:
       {
-        pseudo: `${user.pseudo}`,
+        userName: `${user.userName}`,
         email: `${user.email}`
         //password: user.password
       }
@@ -55,26 +55,26 @@ function Profile() {
         <article>
           <h2>Paramètres du compte</h2>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-              data.lastPseudo = user.pseudo;
+              data.lastPseudo = user.userName;
               submitForm(data);
             })}>
               <div >
-                <label htmlFor="pseudo">Pseudo: </label><br/>
-                <input type="text" {...register("pseudo", 
+                <label htmlFor="userName">Pseudo: </label><br/>
+                <input type="text" {...register("userName", 
                 { 
                   minLength: 
                   { 
                     value: 4,
-                    message: "Le pseudo doit contenir entre 4 et 20 caractères"
+                    message: "Le userName doit contenir entre 4 et 20 caractères"
                   },
                   maxLength: 
                   { 
                     value: 20,
-                    message: "Le pseudo doit contenir entre 4 et 20 caractères"
+                    message: "Le userName doit contenir entre 4 et 20 caractères"
                   } 
                 })} 
                 />
-                <p>{errors.pseudo?.message}</p>
+                <p>{errors.userName?.message}</p>
               </div>
               <div >
                 <label htmlFor="email">mail: </label><br/>
@@ -83,12 +83,12 @@ function Profile() {
                   minLength: 
                   { 
                     value: 4,
-                    message: "Le pseudo doit contenir entre 4 et 30 caractères"
+                    message: "Le userName doit contenir entre 4 et 30 caractères"
                   },
                   maxLength: 
                   { 
                     value: 30,
-                    message: "Le pseudo doit contenir entre 4 et 30 caractères"
+                    message: "Le userName doit contenir entre 4 et 30 caractères"
                   } 
                 })} 
                 />
@@ -119,7 +119,7 @@ function Profile() {
                 </button>
                 <button type="button" className="button" onClick={() => {
                   reset({
-                    pseudo: `${user.pseudo}`,
+                    userName: `${user.userName}`,
                     email: `${user.email}`
                   }); 
                 }}>

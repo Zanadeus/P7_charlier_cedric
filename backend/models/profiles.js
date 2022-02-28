@@ -1,15 +1,11 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
-
-//Creation d'un modèle utilisateur
-const profileSchema = mongoose.Schema({
-  pseudo: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, minLength: 8, required: true },
-  admin: { type: Number, default: '0', required: false }, //niveau d'administrateur 0=non
-  imageUrl: { type: String, default: '', required: false } //URL de la photo de profil utilisateur
-});
-
-profileSchema.plugin(uniqueValidator);
-
-module.exports = mongoose.model('profile', profileSchema);
+module.exports = (sequelize, Sequelize) => {
+  const ProfileModel = sequelize.define("profiles", {
+    idProfile: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+    userName: { type: Sequelize.STRING, required: true, unique: true},//allowNull: false
+    email: { type: Sequelize.STRING, required: true, unique: true},//allowNull: false
+    password: { type: Sequelize.STRING, required: true/*, minLength: 8*/},//allowNull: false
+    admin: { type: Sequelize.INTEGER, required: false, defaultValue: '0'},
+    imageUrl: { type: Sequelize.STRING, required: false}
+  });
+  return ProfileModel;
+};

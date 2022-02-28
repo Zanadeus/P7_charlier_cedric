@@ -1,11 +1,15 @@
 //Fonctionnement du code
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const user = require('../models/profiles');
 require('dotenv').config();
+
+const db = require("../models");
+const Profile = db.profiles;
+const Op = db.Sequelize.Op;
 
 exports.signup = (req, res, next) => 
 {
+  console.log(req.body);
   if (req.body.password.length < 8 || req.body.password.length > 30)
   {
     return res.status(400).json({ message: 'Your password need to contain 8 to 30 characters' });
@@ -13,14 +17,16 @@ exports.signup = (req, res, next) =>
   bcrypt.hash(req.body.password, 10)
   .then(hash => 
   {
-    let myUser = new user(
+    const profile = 
     {
-      pseudo: req.body.pseudo,
+      //id: req.body.userName + Date.Now(),
+      admin: 0,
+      userName: req.body.userName,
       email: req.body.email,
       password: hash
-    });
-    myUser.save()
-    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+    };
+    Profile.create(profile)
+    .then((data) => res.status(201).json({ message: 'Utilisateur créé !', data }))
     .catch(error => res.status(400).json({ error }))
   })
   .catch(error => res.status(500).json({ error }));
@@ -28,7 +34,7 @@ exports.signup = (req, res, next) =>
 
 exports.login = (req, res, next) => {
   console.log(req.body);
-  user.findOne({ email: req.body.email })
+  Profile.findOne({ where: {email: req.body.email }})
     .then(myUser => 
     {
       console.log(myUser);
@@ -45,7 +51,7 @@ exports.login = (req, res, next) => {
           //res.setHeader('Authorization', 'Bearer '+ newToken);
           res.status(200).json(
           {
-            message: 'Connection réussie !',
+            message: 'Utilisateur connecté !',
             user: myUser,
             userId: myUser._id,
             
@@ -56,7 +62,7 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(500).json('erreur1 depuis users.js :' + { error }));
+        .catch(error => res.status(500).json('erreur1 depuis accounts.js :' + { error }));
     })
-    .catch(error => res.status(500).json('erreur2 depuis users.js :' +{ error }));
+    .catch(error => res.status(500).json('erreur2 depuis accounts.js :' +{ error }));
 };

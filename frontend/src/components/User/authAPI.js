@@ -3,12 +3,13 @@ export async function loginFunction(user)
   //console.log(user);
   const email = user.email;
   const password = user.password;
-  return fetch ("http://localhost:8080/api/auth/login",
+  return fetch ("http://localhost:8080/api/account/login",
   {
     method: "POST",
     headers: 
     {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer {token}`
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: JSON.stringify(
@@ -23,17 +24,17 @@ export async function loginFunction(user)
   })
   .catch(function(error)//catch errors
   {
-    alert('erreur depuis authAPI.js' + error);
+    alert('erreur depuis accountAPI.js' + error);
   })
 }
 
 export async function signinFunction(user)
 {
   console.log(user);
-  const pseudo = user.pseudo;
+  const userName = user.userName;
   const email = user.email;
   const password = user.password1;
-  return fetch ("http://localhost:8080/api/auth/signup",
+  return fetch ("http://localhost:8080/api/account/signup",
   {
     method: "POST",
     headers: 
@@ -43,7 +44,7 @@ export async function signinFunction(user)
     },
     body: JSON.stringify(
     { 
-      pseudo,
+      userName,
       email,
       password
     })
@@ -55,7 +56,7 @@ export async function signinFunction(user)
   })
   .catch(function(error)//catch errors
   {
-    alert('erreur depuis authAPI.js' + error);
+    alert('erreur depuis accountAPI.js' + error);
   })
 }
 /*

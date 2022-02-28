@@ -31,15 +31,15 @@ function CreatePost()
             submitForm(data);
           })}>
             <div >
-            <label htmlFor="titre">titre: </label><br/>
-              <input type="titre" {...register("titre", 
+            <label htmlFor="title">titre: </label><br/>
+              <input type="title" {...register("title", 
               { required: "Ce champ est requis" })} 
               placeholder='titre' />
               <p>{errors.titre?.message}</p>
             </div>
             <div >
-              <label htmlFor="texte">texte: </label><br/>
-              <textarea type="texte" {...register("texte")} 
+              <label htmlFor="text">texte: </label><br/>
+              <textarea type="text" {...register("text")} 
               placeholder='texte' />
             </div>
             <div >

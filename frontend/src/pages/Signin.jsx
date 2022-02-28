@@ -39,8 +39,8 @@ function Signin()
             }
           })}>
             <div >
-              <label htmlFor="pseudo">pseudo: </label><br/>
-              <input type="string" {...register("pseudo", 
+              <label htmlFor="userName">pseudo: </label><br/>
+              <input type="string" {...register("userName", 
               { 
                 required: "Ce champ est requis", 
                 minLength: 

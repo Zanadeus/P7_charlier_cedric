@@ -61,15 +61,15 @@ function TemplatePost({ value }){
               il y a {timePastSincePostCreation()}
             </p>
             <button className="fontAwesomeSize" onClick={() =>
-              deleteMyPost(post._id)
+              deleteMyPost(post.id)
             }>
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </div>
           
-          <Link to={`/post/${post._id}`} >
-            <h2>{post.titre}</h2>
-            <div className="post">{post.texte}</div>
+          <Link to={`/post/${post.id}`} >
+            <h2>{post.title}</h2>
+            <div className="post">{post.text}</div>
             <p className="postFeet">{post.commentNumber} Commentaire(s) {post.creationDate}</p>
           </Link>
         </div>

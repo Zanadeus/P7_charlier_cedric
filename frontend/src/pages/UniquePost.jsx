@@ -16,7 +16,7 @@ function UniquePost()
 
   return (
     <main id="feed">
-      <h1>{post.titre}</h1>
+      <h1>{post.title}</h1>
       <section>
         <TemplatePost value={post} />
       </section>

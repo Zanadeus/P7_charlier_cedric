@@ -1,10 +1,8 @@
-const db = require("../models");
-const Post = db.posts;
-const Op = db.Sequelize.Op;
+const Post = require('../models/post');
 const fs = require('fs');
 
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll()
+  Post.find()
   .then(
     (allPosts) => {
       res.status(200).json(allPosts);
@@ -20,7 +18,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getOnePost = (req, res, next) => {
-  Post.findByPk(req.params.id)
+  Post.findOne({_id: req.params.id})
   .then(
     (onePost) => {
       res.status(200).json(onePost);
@@ -38,13 +36,15 @@ exports.getOnePost = (req, res, next) => {
 exports.createPost = (req, res, next) => {
   console.log(req.body);
   console.log(req.body.item);
-  const newPost = 
-  {
-    author: req.body.item.author,
-    title: req.body.item.title,
-    text: req.body.item.text,
-  };
-  Post.create(newPost)
+  const postObject = req.body.item;
+  delete postObject._id;
+  const newPost = new Post({
+    ...postObject
+    //imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`,
+    //imageUrl: `${req.protocol}://127.0.0.1:8081/pictures/${req.file.filename}`,
+  });
+  
+  newPost.save()
   .then(() => res.status(201).json({ message: 'Nouvelle publication enregistrée !'}))
   .catch(error => res.status(400).json({ message: error }));
 };
@@ -67,10 +67,6 @@ exports.modifyPost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => 
 {
-  Post.destroy({where: {id: req.params.id}})
-  .then(() => res.status(200).json({ message: 'Post deleted !'}))
-  .catch(error => res.status(400).json({ error }));
-  /*
   Post.findOne({ _id: req.params.id })
     .then(post => 
     {
@@ -87,7 +83,6 @@ exports.deletePost = (req, res, next) =>
       });
     })
     .catch(error => res.status(500).json({ error }));
-    */
 };
 
 exports.setLike = (req, res, next) => 

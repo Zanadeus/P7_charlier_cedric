@@ -1,15 +1,35 @@
 const express = require('express');
 const app = express();
+//const mongoose = require('mongoose');
+const { Sequelize } = require('sequelize');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 
-const db = require("./models/index.js");
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
+//Connection à la BDD
+const sequelize = new Sequelize("P7OCCHARLIER", "CHARLIER", "Charlieradmin7", {
+  dialect: "mysql",
+  host: "localhost"
 });
+try 
+{
+  sequelize.authenticate();
+  console.log('Connecté à la base de données MySQL!');
+} 
+catch (error) {
+  console.error('Impossible de se connecter, erreur suivante :', error);
+}
+
+
+/*
+mongoose.connect(process.env.MONGO_LOGIN,
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+*/
 
 //Pouvoir effectuer les requètes trans-serveur (host:3000 et host:4200)
 app.use((req, res, next) => 
@@ -45,14 +65,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 
 //files path
-const accountRoads = require('./roads/accounts');
+const userRoads = require('./roads/users');
 const profileRoads = require('./roads/profiles')
 const postsRoads = require('./roads/posts');
 
 //API path
 app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
-app.use('/api/account', /*antiForcageId,*/ helmet(), accountRoads);
+app.use('/api/auth', /*antiForcageId,*/ helmet(), userRoads);
 app.use('/api/profile', helmet(), profileRoads);
-app.use('/api/post', helmet(), postsRoads);
+app.use('/api/posts', helmet(), postsRoads);
 
 module.exports = app;
