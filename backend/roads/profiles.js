@@ -7,6 +7,6 @@ const profilesCtrl = require('../controllers/profiles');
 
 router.get('/:pseudo', /*auth, */profilesCtrl.getOneProfile);
 router.put('/:pseudo', /*auth, */profilesCtrl.modifyProfile);
-//router.delete('/:id', auth, userCtrl.deleteProfile);
+router.delete('/:userName', auth, profilesCtrl.deleteProfile);
 
 module.exports = router;

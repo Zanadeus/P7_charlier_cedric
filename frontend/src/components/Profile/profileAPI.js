@@ -1,10 +1,6 @@
 export async function updateProfileFunction(user)
 {
   console.log(user);
-  /*
-  const pseudo = user.pseudo;
-  const email = user.email;
-  */
   return fetch (`http://localhost:8080/api/profile/${user.lastPseudo}`,
   {
     method: "PUT",
@@ -39,4 +35,18 @@ export async function getProfileFunction(user)
   {
     alert('erreur depuis profileAPI.js , getProfileFunction : ' + error);
   })
+}
+
+export async function deleteProfileFunction(user)
+{
+  console.log(user);
+  console.log(user.userName);
+  return fetch (`http://localhost:8080/api/profile/${user.userName}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+  })
+  .then(data => data.json())
 }

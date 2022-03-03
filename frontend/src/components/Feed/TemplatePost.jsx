@@ -2,7 +2,7 @@ import '../../styles/Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowDown, faCircleArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
-import { deletePostFunction } from './APIcalls'
+import { deletePostFunction } from './postsAPI'
 
 function TemplatePost({ value }){
   const post = value
@@ -20,7 +20,7 @@ function TemplatePost({ value }){
 
   function timePastSincePostCreation()
   {
-    let timePastCounting = (Date.now()-post.creationDate)/1000;//temps en secondes
+    let timePastCounting = (Date.now()-post.createdAt)/1000;//temps en secondes
     if (timePastCounting < 60) 
     {
       return `${Math.floor(timePastCounting)} seconde(s)`//temps en minutes

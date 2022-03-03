@@ -35,3 +35,10 @@ exports.modifyProfile = (req, res, next) => {
     }))
   .catch(error => res.status(400).json({ error }));
 };
+
+exports.deleteProfile = (req, res, next) => {
+  console.log(req.params);
+  Profile.destroy({where: {userName: req.params.userName}})
+  .then(() => res.status(200).json({ message: `Compte supprimé !` }))
+  .catch(error => res.status(400).json({ error }));
+};

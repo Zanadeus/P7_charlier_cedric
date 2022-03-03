@@ -7,8 +7,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 
 const db = require("./models/index.js");
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
+db.sequelize.sync({ force: false }).then(() => {
+  console.log("Synced to DB !");
 });
 
 //Pouvoir effectuer les requètes trans-serveur (host:3000 et host:4200)

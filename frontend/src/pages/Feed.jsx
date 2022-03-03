@@ -1,7 +1,7 @@
 import '../styles/Feed.css'
 import TemplatePost from '../components/Feed/TemplatePost'
 import React, { useEffect, useState } from 'react'
-import { getList } from '../components/Feed/APIcalls'
+import { getList } from '../components/Feed/postsAPI'
 
 function Feed() 
 {
@@ -22,7 +22,7 @@ function Feed()
           {
             posts.map((item) => 
             (
-              <TemplatePost value={item} key={`${item._id}`} />
+              <TemplatePost value={item} key={`${item.id}`} />
             ))
           }
       </section>

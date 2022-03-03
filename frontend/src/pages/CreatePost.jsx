@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
-import { createPostFunction } from '../components/Feed/APIcalls';
+import { createPostFunction } from '../components/Feed/postsAPI';
 function CreatePost() 
 {
+  let profile = JSON.parse(sessionStorage.getItem('user')) ;
+
   const {
     register, 
     handleSubmit, 
@@ -26,7 +28,9 @@ function CreatePost()
       <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-            data.author = sessionStorage.getItem('userName');
+            data.author = profile.userName;
+            data.authorId = profile.profileId;
+            data.profileId = profile.profileId;
             console.log(data);
             submitForm(data);
           })}>

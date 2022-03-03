@@ -40,6 +40,7 @@ exports.createPost = (req, res, next) => {
   console.log(req.body.item);
   const newPost = 
   {
+    authorId: req.body.item.authorId,
     author: req.body.item.author,
     title: req.body.item.title,
     text: req.body.item.text,

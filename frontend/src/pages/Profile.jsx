@@ -1,11 +1,12 @@
 import '../styles/Profile.css'
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import { getProfileFunction, updateProfileFunction } from '../components/Profile/profileAPI'
+import { getProfileFunction, updateProfileFunction, deleteProfileFunction } from '../components/Profile/profileAPI'
 
 function Profile() {
   const [user, setList] = useState([]);
-  let userName = sessionStorage.getItem('userName');
+  let profile = JSON.parse(sessionStorage.getItem('user')) ;
+  let userName = profile.userName;
   console.log(user);
   //rendering pour aller chercher les informations utilisateurs dans la BDD
   useEffect(() => {
@@ -31,11 +32,25 @@ function Profile() {
     .then((response) => 
     {
       console.log(response);
-      sessionStorage.setItem('userName', response.userName);
+      profile.userName = response.userName ;
+      profile.email = response.email ;
+      sessionStorage.setItem('user', JSON.stringify(profile));
       window.location.reload();
       window.location.replace(`/profile/${response.userName}`);
     })
   }
+//au clic sur le bouton "supprimer profil", fonction de suppression du profil et reload sur la page de déconnexion
+function deleteUser(data)
+{
+  console.log(data);
+  deleteProfileFunction(data)
+  .then((response) => 
+  {
+    console.log(response);
+    //window.location.reload();
+    //window.location.replace(`/logout`);
+  })
+}
   //appel des éléments du formulaire
   const 
   { register, handleSubmit, formState: {errors}, reset } = useForm(
@@ -100,8 +115,6 @@ function Profile() {
                 <input type="password" {...register("password", { required: "Ce champ est requis", minLength: 8 })} placeholder='password' defaultValue={''} required />
                 <p>{errors.password?.message}</p>
               </div>
-              */}
-              {/*
               <div >
                 <label htmlFor="password2">nouveau mot de passe: </label><br/>
                 <input type="password" {...register("password2")} placeholder='password' />
@@ -118,12 +131,9 @@ function Profile() {
                   Modifier le profil
                 </button>
                 <button type="button" className="button" onClick={() => {
-                  reset({
-                    userName: `${user.userName}`,
-                    email: `${user.email}`
-                  }); 
+                  deleteUser(user);
                 }}>
-                  reset form
+                  supprimer le compte
                 </button>
               </div>
               

@@ -18,4 +18,10 @@ db.sequelize = sequelize;
 db.profiles = require("./profiles")(sequelize, Sequelize);
 db.posts = require("./post")(sequelize, Sequelize);
 
+db.profiles.hasMany(db.posts, { as: "posts" });
+db.posts.belongsTo(db.profiles, {
+  foreignKey: "profileId", //a modifier par author
+  as: "profile",
+});
+
 module.exports = db;

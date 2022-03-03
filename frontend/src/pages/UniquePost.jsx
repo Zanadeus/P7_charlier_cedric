@@ -1,6 +1,6 @@
 import TemplatePost from '../components/Feed/TemplatePost'
 import React, { useEffect, useState } from 'react'
-import { getPost } from '../components/Feed/APIcalls';
+import { getPost } from '../components/Feed/postsAPI';
 
 function UniquePost() 
 {
