@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const PostModel = sequelize.define("posts", {
-    authorId: { type: Sequelize.STRING },//id du profil utilisateur, auteur du post
+    authorId: { type: Sequelize.INTEGER },//id du profil utilisateur, auteur du post
     author: { type: Sequelize.STRING, required: true /*,minLength: 3*/},//créateur du post
     title: { type: Sequelize.STRING, required: true /*,minLength: 5*/},//titre du post
     text: { type: Sequelize.STRING, defaultValue: '', required: true},//texte de la publication

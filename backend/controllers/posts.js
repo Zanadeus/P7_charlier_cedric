@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll()
+  Post.findAll({include: ["profile"]})
   .then(
     (allPosts) => {
       res.status(200).json(allPosts);
@@ -40,6 +40,7 @@ exports.createPost = (req, res, next) => {
   console.log(req.body.item);
   const newPost = 
   {
+    profileId: req.body.item.profileId,
     authorId: req.body.item.authorId,
     author: req.body.item.author,
     title: req.body.item.title,
