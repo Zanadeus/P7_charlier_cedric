@@ -19,7 +19,6 @@ exports.signup = (req, res, next) =>
   {
     const profile = 
     {
-      //id: req.body.userName + Date.Now(),
       admin: 0,
       userName: req.body.userName,
       email: req.body.email,

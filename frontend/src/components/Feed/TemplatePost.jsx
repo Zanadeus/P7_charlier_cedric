@@ -5,7 +5,8 @@ import { Outlet, Link } from 'react-router-dom'
 import { deletePostFunction } from './postsAPI'
 
 function TemplatePost({ value }){
-  const post = value
+  const post = value;
+  //console.log(post);
 
   function deleteMyPost(item)
   {
@@ -18,35 +19,6 @@ function TemplatePost({ value }){
     })
   }
 
-  function timePastSincePostCreation()
-  {
-    let timePastCounting = (Date.now()-post.createdAt)/1000;//temps en secondes
-    if (timePastCounting < 60) 
-    {
-      return `${Math.floor(timePastCounting)} seconde(s)`//temps en minutes
-    }
-    else if ( (timePastCounting/60) < 60) 
-    {
-      return `${Math.floor(timePastCounting/60)} minute(s)`
-    }
-    else if ((timePastCounting/(60*60)) < 24) 
-    {
-      return `${Math.floor(timePastCounting/(60*60))} heure(s)`
-    }
-    else if ((timePastCounting/(60*60*24)) < 365) 
-    {
-      return `${Math.floor(timePastCounting/(60*60*24))} jour(s)`
-    }
-    else if ((timePastCounting/(60*60*24)) > 365) 
-    {
-      return `${Math.floor(timePastCounting/(60*60*24*365))} an(s)`
-    }
-    else
-    {
-      return `erreur`
-    }
-  }
-
   return(
     <article className='uniquePost' >
         <div className="likesBar">
@@ -57,8 +29,8 @@ function TemplatePost({ value }){
         <div>
           <div className="postHead">
             <p >
-              Publié par <Link to={`/profile/${post.author}`} > <strong>{` ${post.author} `}</strong> </Link> 
-              il y a {timePastSincePostCreation()}
+              Publié par <Link to={`/profile/{post.profile.userName}`} > <strong>{` {post.profile.userName} `}</strong> </Link>
+              il y a
             </p>
             <button className="fontAwesomeSize" onClick={() =>
               deleteMyPost(post.id)
@@ -67,7 +39,7 @@ function TemplatePost({ value }){
             </button>
           </div>
           
-          <Link to={`/post/${post.id}`} >
+          <Link to={`/post/${post.postId}`} >
             <h2>{post.title}</h2>
             <div className="post">{post.text}</div>
             <p className="postFeet">{post.commentNumber} Commentaire(s) {post.creationDate}</p>

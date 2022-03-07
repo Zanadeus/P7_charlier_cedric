@@ -48,11 +48,13 @@ app.use(mongoSanitize());
 const accountRoads = require('./roads/accounts');
 const profileRoads = require('./roads/profiles')
 const postsRoads = require('./roads/posts');
+const commentsRoads = require('./roads/comments');
 
 //API path
 app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
 app.use('/api/account', /*antiForcageId,*/ helmet(), accountRoads);
 app.use('/api/profile', helmet(), profileRoads);
 app.use('/api/post', helmet(), postsRoads);
+app.use('/api/comment', helmet(), commentsRoads);
 
 module.exports = app;

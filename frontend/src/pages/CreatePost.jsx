@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useForm } from "react-hook-form"
 import { createPostFunction } from '../components/Feed/postsAPI';
+
 function CreatePost() 
 {
   let profile = JSON.parse(sessionStorage.getItem('user')) ;
@@ -25,11 +26,8 @@ function CreatePost()
     <main id="feed">
       <h1>Créer une publication sur Groupomania</h1>
       <section>
-      <article>
-          <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
+        <article>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-            data.author = profile.userName;
-            data.authorId = profile.profileId;
             data.profileId = profile.profileId;
             console.log(data);
             submitForm(data);

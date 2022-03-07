@@ -8,6 +8,7 @@ function Profile() {
   let profile = JSON.parse(sessionStorage.getItem('user')) ;
   let userName = profile.userName;
   console.log(user);
+  
   //rendering pour aller chercher les informations utilisateurs dans la BDD
   useEffect(() => {
     getProfileFunction(userName)
@@ -17,6 +18,7 @@ function Profile() {
       console.log(user);
     })
   }, [])
+  
   //rendering pour que les defaultValues du formulaire prennent la réponse de getProfileFunction
   useEffect(() => {
     reset({

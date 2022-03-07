@@ -1,13 +1,13 @@
 const db = require("../models");
-const Post = db.posts;
+const Comment = db.comments;
 const Op = db.Sequelize.Op;
 const fs = require('fs');
 
-exports.getAllPosts = (req, res, next) => {
-  Post.findAll({include: ["profile"]})
+exports.getAllComments = (req, res, next) => {
+  Comment.findAll({include: ["post"]})
   .then(
-    (allPosts) => {
-      res.status(200).json(allPosts);
+    (allComments) => {
+      res.status(200).json(allComments);
     }
   )
   .catch(
@@ -19,11 +19,11 @@ exports.getAllPosts = (req, res, next) => {
   );
 };
 
-exports.getOnePost = (req, res, next) => {
-  Post.findByPk(req.params.id, {include: ["profile"]})
+exports.getOneComment = (req, res, next) => {
+  Comment.findByPk(req.params.id, {include: ["profile"]})
   .then(
-    (onePost) => {
-      res.status(200).json(onePost);
+    (oneComment) => {
+      res.status(200).json(oneComment);
     }
   )
   .catch(
@@ -35,54 +35,53 @@ exports.getOnePost = (req, res, next) => {
   );
 };
 
-exports.createPost = (req, res, next) => {
+exports.createComment = (req, res, next) => {
   console.log(req.body);
   console.log(req.body.item);
-  const newPost = 
+  const newComment = 
   {
-    profileId: req.body.item.profileId,
-    title: req.body.item.title,
+    postId: req.body.item.profileId,
     text: req.body.item.text,
   };
-  Post.create(newPost)
+  Comment.create(newComment)
   .then(() => res.status(201).json({ message: 'Nouvelle publication enregistrée !'}))
   .catch(error => res.status(400).json({ message: error }));
 };
 
-exports.modifyPost = (req, res, next) => {
-  const postObject = req.file ?
+exports.modifyComment = (req, res, next) => {
+  const commentObject = req.file ?
   {
-    ...JSON.parse(req.body.post),
+    ...JSON.parse(req.body.comment),
     imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`
     //imageUrl: `${req.protocol}://127.0.0.1:8081/backend/pictures/${req.file.filename}`,
   } : { ...req.body };
-  if (res.locals.userId !== postObject.userId) 
+  if (res.locals.userId !== commentObject.userId) 
   {
     return res.status(403).json({ message : 'Invalid user ID' });
   }
-  Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+  Comment.updateOne({ _id: req.params.id }, { ...commentObject, _id: req.params.id })
   .then(() => res.status(200).json({ message: 'Objet modifié !'}))
   .catch(error => res.status(400).json({ error }));
 };
 
-exports.deletePost = (req, res, next) => 
+exports.deleteComment = (req, res, next) => 
 {
-  Post.destroy({where: {id: req.params.id}})
-  .then(() => res.status(200).json({ message: 'Post deleted !'}))
+  Comment.destroy({where: {id: req.params.id}})
+  .then(() => res.status(200).json({ message: 'Comment deleted !'}))
   .catch(error => res.status(400).json({ error }));
   /*
-  Post.findOne({ _id: req.params.id })
-    .then(post => 
+  Comment.findOne({ _id: req.params.id })
+    .then(comment => 
     {
-      if (res.locals.userId !== post.userId) 
+      if (res.locals.userId !== comment.userId) 
       {
         return res.status(403).json({ message : 'Invalid user ID' });
       }
-      const filename = post.imageUrl.split('/pictures/')[1];
+      const filename = comment.imageUrl.split('/pictures/')[1];
       fs.unlink(`pictures/${filename}`, () => 
       {
-        Post.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Post deleted !'}))
+        Comment.deleteOne({ _id: req.params.id })
+          .then(() => res.status(200).json({ message: 'Comment deleted !'}))
           .catch(error => res.status(400).json({ error }));
       });
     })
@@ -93,40 +92,40 @@ exports.deletePost = (req, res, next) =>
 exports.setLike = (req, res, next) => 
 {
   const userID = req.body.userId;
-  const postId = req.params.id;
+  const commentId = req.params.id;
   
   switch (req.body.like)
   {
     case 1:
-      Post.updateOne(
-        { _id: postId },
+      Comment.updateOne(
+        { _id: commentId },
         {
           $push:{usersLiked: userID},
           $inc:{likes: +1}
         })
-        .then(() => res.status(200).json({ message: 'Post likée !'}))
+        .then(() => res.status(200).json({ message: 'Comment likée !'}))
         .catch(error => res.status(400).json({ error }));
     break;
 
     case -1:
-      Post.updateOne(
-        { _id: postId },
+      Comment.updateOne(
+        { _id: commentId },
         {
           $push:{usersDisliked: userID},
           $inc:{dislikes: +1}
         })
-        .then(() => res.status(200).json({ message: 'Post dislikée !'}))
+        .then(() => res.status(200).json({ message: 'Comment dislikée !'}))
         .catch(error => res.status(400).json({ error }));
     break;
 
     case 0:
-      Post.findOne({_id: postId})
-      .then(post => 
+      Comment.findOne({_id: commentId})
+      .then(comment => 
       {
-        if (post.usersLiked.includes(userID)) 
+        if (comment.usersLiked.includes(userID)) 
         {
-          Post.updateOne(
-            { _id: postId },
+          Comment.updateOne(
+            { _id: commentId },
             {
               $pull:{usersLiked: userID},
               $inc:{likes: -1}
@@ -134,9 +133,9 @@ exports.setLike = (req, res, next) =>
             .then(() => res.status(200).json({ message: 'Like retiré !'}))
             .catch(error => res.status(400).json({ error }));
         }
-        if (post.usersDisliked.includes(userID)) 
+        if (comment.usersDisliked.includes(userID)) 
         {
-          Post.updateOne(
+          Comment.updateOne(
             { _id: req.params.id },
             {
               $pull:{usersDisliked: userID},
