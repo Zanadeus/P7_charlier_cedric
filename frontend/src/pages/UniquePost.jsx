@@ -1,5 +1,6 @@
 import TemplatePost from '../components/Feed/TemplatePost'
 import WriteComment from '../components/Comments/WriteComment'
+import DisplayComments from '../components/Comments/DisplayComments'
 import React, { useEffect, useState } from 'react'
 import { getPost } from '../components/Feed/postsAPI'
 
@@ -22,6 +23,7 @@ function UniquePost()
       <section>
         <TemplatePost value={post} key={`${post.id}`}/>
         <WriteComment value={post} />
+        <DisplayComments />
       </section>
     </main>
   )

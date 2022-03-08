@@ -22,7 +22,7 @@ function Feed()
           {
             posts.map((item) => 
             (
-              <TemplatePost value={item} key={`${item.id}`} />
+              <TemplatePost value={item} key={`${item.postId}`} />
             ))
           }
       </section>
