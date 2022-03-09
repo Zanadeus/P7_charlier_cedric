@@ -2,7 +2,7 @@ import { deleteCommentFunction } from './commentAPI'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 function ConditionalButton({value}){
-
+  console.log(value);
   function deleteMyPost(item)
   {
     console.log("click !");
@@ -10,11 +10,11 @@ function ConditionalButton({value}){
     .then((response) => 
     {
       console.log(response);
-      window.location.reload();
+      //window.location.reload();
     })
   }
 
-  if (value.post.profileId === JSON.parse(sessionStorage.getItem('user')).profileId) 
+  if (value.profileId === JSON.parse(sessionStorage.getItem('user')).profileId) 
   {
     return (
       <button className="fontAwesomeSize" onClick={() =>

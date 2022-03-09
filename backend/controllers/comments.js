@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 exports.getAllComments = (req, res, next) => {
-  Comment.findAll({include: ["post"]})
+  Comment.findAll({include: ["post","profile"]})
   .then(
     (allComments) => {
       res.status(200).json(allComments);
@@ -40,8 +40,9 @@ exports.createComment = (req, res, next) => {
   console.log(req.body.item);
   const newComment = 
   {
+    profileId : req.body.item.profileId,
     postId: req.body.item.profileId,
-    text: req.body.item.text,
+    text: req.body.item.text
   };
   Comment.create(newComment)
   .then(() => res.status(201).json({ message: 'Nouvelle publication enregistrée !'}))
@@ -66,7 +67,8 @@ exports.modifyComment = (req, res, next) => {
 
 exports.deleteComment = (req, res, next) => 
 {
-  Comment.destroy({where: {id: req.params.id}})
+  console.log(req.params.id);
+  Comment.destroy({where: {commentId: req.params.id}})
   .then(() => res.status(200).json({ message: 'Comment deleted !'}))
   .catch(error => res.status(400).json({ error }));
   /*

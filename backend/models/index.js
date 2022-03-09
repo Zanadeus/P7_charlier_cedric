@@ -24,13 +24,13 @@ db.posts.belongsTo(db.profiles, {
   foreignKey: "profileId"
 });
 
-db.posts.hasMany(db.comments, { as: "comments"});
-db.comments.belongsTo(db.posts, {
-  foreignKey: "postId"
-});
 db.profiles.hasMany(db.comments, { as: "comments" });
 db.comments.belongsTo(db.profiles, {
   foreignKey: "profileId"
+});
+db.posts.hasMany(db.comments, { as: "comments"});
+db.comments.belongsTo(db.posts, {
+  foreignKey: "postId"
 });
 
 module.exports = db;

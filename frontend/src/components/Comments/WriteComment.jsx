@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useForm } from "react-hook-form"
 import { createCommentFunction } from './commentAPI';
 
-function WriteComment(value) 
+function WriteComment() 
 {
-  const post = value;
-  //console.log(post);
   let profile = JSON.parse(sessionStorage.getItem('user')) ;
 
   const {
     register, 
     handleSubmit, 
-    formState: {errors} 
   } = useForm();
 
   function submitForm(data)

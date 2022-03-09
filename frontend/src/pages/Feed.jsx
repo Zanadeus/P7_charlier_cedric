@@ -1,14 +1,14 @@
 import '../styles/Feed.css'
 import TemplatePost from '../components/Feed/TemplatePost'
 import React, { useEffect, useState } from 'react'
-import { getList } from '../components/Feed/postsAPI'
+import { getAllPosts } from '../components/Feed/postsAPI'
 
 function Feed() 
 {
   const [posts, setList] = useState([]);
 
   useEffect(() => {
-    getList()
+    getAllPosts()
     .then((response) => {
       console.log(response);
       setList(response);

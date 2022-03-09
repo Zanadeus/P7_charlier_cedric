@@ -67,7 +67,7 @@ exports.modifyPost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => 
 {
-  Post.destroy({where: {id: req.params.id}})
+  Post.destroy({where: {postId: req.params.id}})
   .then(() => res.status(200).json({ message: 'Post deleted !'}))
   .catch(error => res.status(400).json({ error }));
   /*

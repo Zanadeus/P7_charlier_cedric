@@ -1,9 +1,9 @@
-export async function getList() {
+export async function getAllPosts() {
   return fetch('http://localhost:8080/api/post/')
     .then(data => data.json())
 }
 
-export async function getPost(pageId) {
+export async function getOnePost(pageId) {
   return fetch('http://localhost:8080/api/post/'+pageId)
     .then(data => data.json())
 }

@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowDown, faCircleArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
 import { deletePostFunction } from './postsAPI'
+import ConditionalButton from '../Comments/ConditionnalButton'
 
 function TemplatePost({ value }){
   const post = value;
-  //console.log(post);
+  console.log(post);
 
   function deleteMyPost(item)
   {
@@ -29,14 +30,17 @@ function TemplatePost({ value }){
         <div>
           <div className="postHead">
             <p >
-              Publié par <Link to={`/profile/{post.profile.userName}`} > <strong>{` {post.profile.userName} `}</strong> </Link>
+              Publié par <Link to={`/profile/${post.profile.userName}`} > <strong>{` ${post.profile.userName} `}</strong> </Link>
               il y a
             </p>
+            <ConditionalButton value={post}/>
+            {/*
             <button className="fontAwesomeSize" onClick={() =>
               deleteMyPost(post.id)
             }>
               <FontAwesomeIcon icon={faTrash} />
             </button>
+          */}
           </div>
           
           <Link to={`/post/${post.postId}`} >
