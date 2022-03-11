@@ -1,24 +1,12 @@
 import '../../styles/Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleArrowDown, faCircleArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
-import { deletePostFunction } from './postsAPI'
-import ConditionalButton from '../Comments/ConditionnalButton'
+import DeletePostButton from './DeletePostButton'
 
 function TemplatePost({ value }){
   const post = value;
-  console.log(post);
-
-  function deleteMyPost(item)
-  {
-    console.log("click !");
-    deletePostFunction(item)
-    .then((response) => 
-    {
-      console.log(response);
-      window.location.reload();
-    })
-  }
+  //console.log(post);
 
   return(
     <article className='uniquePost' >
@@ -33,14 +21,7 @@ function TemplatePost({ value }){
               Publié par <Link to={`/profile/${post.profile.userName}`} > <strong>{` ${post.profile.userName} `}</strong> </Link>
               il y a
             </p>
-            <ConditionalButton value={post}/>
-            {/*
-            <button className="fontAwesomeSize" onClick={() =>
-              deleteMyPost(post.id)
-            }>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          */}
+            <DeletePostButton value={post}/>
           </div>
           
           <Link to={`/post/${post.postId}`} >

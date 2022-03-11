@@ -20,7 +20,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getOnePost = (req, res, next) => {
-  Post.findByPk(req.params.id, {include: ["profile"]})
+  Post.findByPk(req.params.id, {include: ["profile", "comments"]})
   .then(
     (onePost) => {
       res.status(200).json(onePost);

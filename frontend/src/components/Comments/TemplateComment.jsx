@@ -2,11 +2,11 @@ import '../../styles/Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
-import ConditionalButton from './ConditionnalButton'
+import DeleteCommentButton from './DeleteCommentButton'
 
 function TemplateComment({ value }){
   const comment = value;
-  console.log(comment);
+  //console.log(comment);
 
   return(
     <article className='uniquePost' >
@@ -21,7 +21,7 @@ function TemplateComment({ value }){
               Publié par <Link to={`/profile/${comment.profile.userName}`} > <strong>{` ${comment.profile.userName} `}</strong> </Link>
               il y a
             </p>
-            <ConditionalButton value={comment}/>
+            <DeleteCommentButton value={comment}/>
           </div>
             <div className="post">{comment.text}</div>
         </div>

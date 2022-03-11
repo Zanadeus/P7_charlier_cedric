@@ -5,6 +5,7 @@ import { createCommentFunction } from './commentAPI';
 function WriteComment() 
 {
   let profile = JSON.parse(sessionStorage.getItem('user')) ;
+  let actualPostId = window.location.href.split("post/").pop();
 
   const {
     register, 
@@ -26,6 +27,7 @@ function WriteComment()
     <h2>Commenter en tant que </h2>
     <form id="submitForm" onSubmit={handleSubmit((data) => {
       data.profileId = profile.profileId;
+      data.postId = actualPostId;
       console.log(data);
       submitForm(data);
       })}>
