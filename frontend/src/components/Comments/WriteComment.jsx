@@ -4,7 +4,7 @@ import { createCommentFunction } from './commentAPI';
 
 function WriteComment() 
 {
-  let profile = JSON.parse(sessionStorage.getItem('user')) ;
+  let profile = JSON.parse(localStorage.getItem('user')) ;
   let actualPostId = window.location.href.split("post/").pop();
 
   const {

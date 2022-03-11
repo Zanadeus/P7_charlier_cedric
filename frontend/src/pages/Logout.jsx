@@ -1,6 +1,6 @@
 function Logout()
 {
-  sessionStorage.clear();
+  localStorage.clear();
   window.location.reload();
   window.location.replace("/");
   

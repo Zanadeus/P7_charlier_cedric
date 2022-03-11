@@ -4,7 +4,7 @@ import { createPostFunction } from '../components/Feed/postsAPI';
 
 function CreatePost() 
 {
-  let profile = JSON.parse(sessionStorage.getItem('user')) ;
+  let profile = JSON.parse(localStorage.getItem('user')) ;
 
   const {
     register, 

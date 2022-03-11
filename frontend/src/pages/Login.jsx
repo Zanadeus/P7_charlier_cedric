@@ -22,19 +22,19 @@ function Login()
       console.log(response);
       if (response.token) 
       {
-        sessionStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.token);
         console.log("ceci est response.user : ");
         console.log(response.user);
-        sessionStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('user', JSON.stringify(response.user));
         
         /*
         let userObject = JSON.stringify(response.user);
         console.log("ceci est userObject string : ");
         console.log(userObject);
 
-        sessionStorage.setItem('user', userObject);
-        let testUser = sessionStorage.getItem('user');
-        console.log("ceci est sessionStorage user : ");
+        localStorage.setItem('user', userObject);
+        let testUser = localStorage.getItem('user');
+        console.log("ceci est localStorage user : ");
         console.log(testUser);
         console.log(JSON.parse(testUser));
         
@@ -42,8 +42,8 @@ function Login()
         newUserObject.userName = 'Cobra12';
         console.log(newUserObject);
         */
-        window.location.reload();
-        window.location.replace("/");
+        //window.location.reload();
+        //window.location.replace("/");
       }
       else
       {

@@ -15,7 +15,7 @@ import UniquePost from "./pages/UniquePost"
 
 function App() {
   //const { token, setToken } = useToken();
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   if(!token) 
   {
     return (

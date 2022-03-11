@@ -17,8 +17,8 @@ function DeleteCommentButton({value}){
       })
   }
 
-  if ( value.profileId === JSON.parse(sessionStorage.getItem('user')).profileId 
-  || JSON.parse(sessionStorage.getItem('user')).admin === 1) 
+  if ( value.profileId === JSON.parse(localStorage.getItem('user')).profileId 
+  || JSON.parse(localStorage.getItem('user')).admin === 1) 
   {
     return (
       <button className="fontAwesomeSize" onClick={() =>

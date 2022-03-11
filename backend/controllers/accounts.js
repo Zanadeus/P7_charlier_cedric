@@ -51,13 +51,17 @@ exports.login = (req, res, next) => {
           res.status(200).json(
           {
             message: 'Utilisateur connecté !',
-            user: myUser,
-            userId: myUser._id,
+            user: {
+              userName: myUser.userName,
+              email: myUser.email,
+              profileId: myUser.profileId
+            },
             
             token: jwt.sign(
-              { userId: myUser._id },
+              { userId: myUser.profileId,
+              admin: myUser.admin },
               process.env.ACCESS_TOKEN_SECRET,
-              { expiresIn: '1800s' }
+              { expiresIn: '3600s' }
             )
           });
         })

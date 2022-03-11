@@ -5,7 +5,7 @@ import { getProfileFunction, updateProfileFunction, deleteProfileFunction } from
 
 function Profile() {
   const [user, setList] = useState([]);
-  let profile = JSON.parse(sessionStorage.getItem('user')) ;
+  let profile = JSON.parse(localStorage.getItem('user')) ;
   let userName = profile.userName;
   console.log(user);
   
@@ -36,7 +36,7 @@ function Profile() {
       console.log(response);
       profile.userName = response.userName ;
       profile.email = response.email ;
-      sessionStorage.setItem('user', JSON.stringify(profile));
+      localStorage.setItem('user', JSON.stringify(profile));
       window.location.reload();
       window.location.replace(`/profile/${response.userName}`);
     })
