@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll({include: ["profile"]})
+  Post.findAll({include: ["profile", "comments"]})
   .then(
     (allPosts) => {
       res.status(200).json(allPosts);
@@ -70,6 +70,7 @@ exports.deletePost = (req, res, next) =>
   Post.destroy({where: {postId: req.params.id}})
   .then(() => res.status(200).json({ message: 'Post deleted !'}))
   .catch(error => res.status(400).json({ error }));
+
   /*
   Post.findOne({ _id: req.params.id })
     .then(post => 

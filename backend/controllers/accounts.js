@@ -62,7 +62,7 @@ exports.login = (req, res, next) => {
               admin: myUser.admin },
               process.env.ACCESS_TOKEN_SECRET,
               { expiresIn: '3600s' }
-            )
+            )+`/${myUser.admin}`//partie developpement, suppression possible
           });
         })
         .catch(error => res.status(500).json('erreur1 depuis accounts.js :' + { error }));

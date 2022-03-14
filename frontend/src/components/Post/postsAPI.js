@@ -23,7 +23,8 @@ export async function deletePostFunction(pageId) {
   return fetch('http://localhost:8080/api/post/'+pageId, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
     }
   })
   .then(data => data.json())

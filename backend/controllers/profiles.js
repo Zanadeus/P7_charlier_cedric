@@ -8,7 +8,7 @@ const Profile = db.profiles;
 const Op = db.Sequelize.Op;
 
 exports.getOneProfile = (req, res, next) => {
-  Profile.findOne(req.params.userName)
+  Profile.findOne({ where: { userName: req.params.userName } })
   .then(
     (oneProfile) => {
       res.status(200).json(oneProfile);

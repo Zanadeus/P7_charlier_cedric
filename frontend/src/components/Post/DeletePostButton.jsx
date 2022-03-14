@@ -2,9 +2,8 @@ import { deletePostFunction } from './postsAPI'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function DeletePostButton({value}){
+function DeletePostButton({value, isAdmin}){
   //console.log(value);
-
   function deleteComment(item)
   {
     console.log("click !");
@@ -18,7 +17,7 @@ function DeletePostButton({value}){
   }
 
   if ( value.profileId === JSON.parse(localStorage.getItem('user')).profileId 
-  || JSON.parse(localStorage.getItem('user')).admin === 1) 
+  || isAdmin === 1) 
   {
     return (
       <button className="fontAwesomeSize" onClick={() =>

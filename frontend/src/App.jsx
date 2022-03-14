@@ -6,12 +6,12 @@ import Login from "./pages/Login"
 import Signin from "./pages/Signin"
 
 import ConnectedBanner from "./components/Banner/ConnectedBanner"
-import Pagenotfound from "./pages/Pagenotfound"
-import Feed from './pages/Feed'
+import Pagenotfound from "./pages/Page404"
+import Feed from './pages/Home'
 import Profile from './pages/Profile'
 import Logout from "./pages/Logout"
 import CreatePost from "./pages/CreatePost"
-import UniquePost from "./pages/UniquePost"
+import UniquePost from "./pages/DisplayOnePost"
 
 function App() {
   //const { token, setToken } = useToken();

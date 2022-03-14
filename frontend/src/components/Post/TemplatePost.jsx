@@ -4,8 +4,9 @@ import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-
 import { Outlet, Link } from 'react-router-dom'
 import DeletePostButton from './DeletePostButton'
 
-function TemplatePost({ value }){
+function TemplatePost({ value, isAdmin }){
   const post = value;
+  //console.log(isAdmin);
   //console.log(post);
 
   return(
@@ -21,7 +22,7 @@ function TemplatePost({ value }){
               Publié par <Link to={`/profile/${post.profile.userName}`} > <strong>{` ${post.profile.userName} `}</strong> </Link>
               il y a
             </p>
-            <DeletePostButton value={post}/>
+            <DeletePostButton value={post} isAdmin={isAdmin}/>
           </div>
           
           <Link to={`/post/${post.postId}`} >

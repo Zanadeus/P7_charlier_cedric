@@ -2,11 +2,11 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import { createCommentFunction } from './commentAPI';
 
-function WriteComment() 
+function WriteComment(value) 
 {
   let profile = JSON.parse(localStorage.getItem('user')) ;
-  let actualPostId = window.location.href.split("post/").pop();
-
+  //let actualPostId = window.location.href.split("post/").pop();
+  let actualPostId = value.value.value.postId;
   const {
     register, 
     handleSubmit, 
@@ -14,7 +14,6 @@ function WriteComment()
 
   function submitForm(data)
   {
-    console.log("coucou");
     createCommentFunction(data)
     .then((response) => 
     {
@@ -28,7 +27,6 @@ function WriteComment()
     <form id="submitForm" onSubmit={handleSubmit((data) => {
       data.profileId = profile.profileId;
       data.postId = actualPostId;
-      console.log(data);
       submitForm(data);
       })}>
       <div >

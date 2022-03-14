@@ -42,7 +42,7 @@ function Login()
         newUserObject.userName = 'Cobra12';
         console.log(newUserObject);
         */
-        //window.location.reload();
+        window.location.reload();
         //window.location.replace("/");
       }
       else

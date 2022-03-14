@@ -5,8 +5,8 @@ const multer = require('../middleware/multerConfig');
 
 const profilesCtrl = require('../controllers/profiles');
 
-router.get('/:pseudo', /*auth, */profilesCtrl.getOneProfile);
-router.put('/:pseudo', /*auth, */profilesCtrl.modifyProfile);
+router.get('/:userName', /*auth, */profilesCtrl.getOneProfile);
+router.put('/:userName', /*auth, */profilesCtrl.modifyProfile);
 router.delete('/:userName', auth, profilesCtrl.deleteProfile);
 
 module.exports = router;
