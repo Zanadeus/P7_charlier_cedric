@@ -19,18 +19,22 @@ db.profiles = require("./profiles")(sequelize, Sequelize);
 db.posts = require("./post")(sequelize, Sequelize);
 db.comments = require("./comment")(sequelize, Sequelize);
 
-db.profiles.hasMany(db.posts, { as: "posts" });
+db.profiles.hasMany(db.posts);
 db.posts.belongsTo(db.profiles, {
-  foreignKey: "profileId"
+  foreignKey: "profileId",
+  as: "profile"
 });
 
-db.profiles.hasMany(db.comments, { as: "comments" });
-db.comments.belongsTo(db.profiles, {
-  foreignKey: "profileId"
-});
-db.posts.hasMany(db.comments, { as: "comments"});
+db.posts.hasMany(db.comments);
 db.comments.belongsTo(db.posts, {
-  foreignKey: "postId"
+  foreignKey: "postId",
+  as: "post"
 });
-
+/*
+db.profiles.hasMany(db.comments);
+db.comments.belongsTo(db.profiles, {
+  foreignKey: "profileId",
+  as: "profile"
+})
+*/
 module.exports = db;

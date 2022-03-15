@@ -1,4 +1,4 @@
-import '../../styles/Post.css'
+import '../../styles/TemplatePost.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { Outlet, Link } from 'react-router-dom'
@@ -10,15 +10,15 @@ function TemplatePost({ value, isAdmin }){
   //console.log(post);
 
   return(
-    <article className='uniquePost' >
+    <article className='postTemplate' >
         <div className="likesBar">
           <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowUp} /></span>
           <p>{post.likes}</p>
           <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowDown} /></span>
         </div>
-        <div>
+        <div className='postBody'>
           <div className="postHead">
-            <p >
+            <p>
               Publié par <Link to={`/profile/${post.profile.userName}`} > <strong>{` ${post.profile.userName} `}</strong> </Link>
               il y a
             </p>

@@ -1,4 +1,3 @@
-import '../styles/Login.css'
 import { loginFunction } from '../components/User/authAPI'
 import { useForm } from "react-hook-form"
 
@@ -43,7 +42,7 @@ function Login()
         console.log(newUserObject);
         */
         window.location.reload();
-        //window.location.replace("/");
+        window.location.replace("/");
       }
       else
       {

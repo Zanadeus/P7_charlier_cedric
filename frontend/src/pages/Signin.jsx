@@ -1,4 +1,3 @@
-import '../styles/Signin.css'
 import { signinFunction } from '../components/User/authAPI'
 import { useForm } from "react-hook-form";
 

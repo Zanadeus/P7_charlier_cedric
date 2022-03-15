@@ -1,4 +1,3 @@
-import '../styles/Feed.css'
 import TemplatePost from '../components/Post/TemplatePost'
 import React, { useEffect, useState } from 'react'
 import { getAllPosts } from '../components/Post/postsAPI'
@@ -10,7 +9,7 @@ function Feed()
   useEffect(() => {
     getAllPosts()
     .then((response) => {
-      //console.log(response);
+      console.log(response);
       setList(response);
     })
   }, [])
@@ -19,10 +18,7 @@ function Feed()
   useEffect(() => {
     getProfileFunction(JSON.parse(localStorage.getItem('user')).userName)
     .then((profile) => {
-      //console.log(profile);
       setIsAdmin(profile.admin);
-      //console.log(profile.admin);
-      //console.log(isUserAdmin);
     })
   }, [])
 

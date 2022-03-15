@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 exports.getAllComments = (req, res, next) => {
-  Comment.findAll({include: ["post","profile"]})
+  Comment.findAll({include: ["posts"]})
   .then(
     (allComments) => {
       res.status(200).json(allComments);

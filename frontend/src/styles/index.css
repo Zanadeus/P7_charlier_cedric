@@ -38,8 +38,8 @@ section
 }
 article
 {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   background-color: seashell;
   padding: 0 1em;
   border-radius: 12px;

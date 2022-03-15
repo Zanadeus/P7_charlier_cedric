@@ -4,7 +4,11 @@ const Op = db.Sequelize.Op;
 const fs = require('fs');
 
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll({include: ["profile", "comments"]})
+  Post.findAll(
+    {include: ["profile"]},
+    //{include: ["posts"]},
+    {order: [['postId', 'DESC']]}
+  )
   .then(
     (allPosts) => {
       res.status(200).json(allPosts);
@@ -20,7 +24,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getOnePost = (req, res, next) => {
-  Post.findByPk(req.params.id, {include: ["profile", "comments"]})
+  Post.findByPk(req.params.id, {include: ["profile"]})
   .then(
     (onePost) => {
       res.status(200).json(onePost);

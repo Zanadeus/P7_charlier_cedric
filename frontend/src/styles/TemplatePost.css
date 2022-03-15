@@ -1,11 +1,11 @@
-.uniquePost
+.postTemplate
 {
   margin: 0 auto 1em;
   padding: 0;
   display: flex;
   flex-direction: row;
 }
-.uniquePost a
+.postTemplate a
 {
   text-decoration: solid;
   color: inherit;
@@ -21,19 +21,23 @@
   align-items: center;
   justify-content: center;
 }
-article .post
+.postTemplate .postBody
+{
+  width: 90%;
+}
+.postTemplate .post
 {
   max-height: 300px;
   overflow: hidden;
 }
-article .postHead
+.postTemplate .postHead
 {
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-article .postFeet
+.postTemplate .postFeet
 {
   height: 40px;
   display: flex;

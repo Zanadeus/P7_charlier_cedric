@@ -1,7 +1,6 @@
 import TemplateComment from './TemplateComment'
 import React, { useEffect, useState } from 'react'
 import { getAllComments } from './commentAPI'
-import WriteComment from './WriteComment'
 
 function DisplayComments(value) 
 {
@@ -16,16 +15,14 @@ function DisplayComments(value)
   }, [])
 
   return (
-    <section>
-      <WriteComment value={value}/>
-      <h2>Commentaires</h2>
+    <article>
       {
         posts.map((item) => 
         (
           <TemplateComment value={item} key={`${item.commentId}`} />
         ))
       }
-    </section>
+    </article>
   )
 }
 

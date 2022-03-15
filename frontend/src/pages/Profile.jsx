@@ -1,4 +1,3 @@
-import '../styles/Profile.css'
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { getProfileFunction, updateProfileFunction, deleteProfileFunction } from '../components/Profile/profileAPI'

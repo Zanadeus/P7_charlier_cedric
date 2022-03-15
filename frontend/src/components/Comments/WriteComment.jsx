@@ -6,7 +6,8 @@ function WriteComment(value)
 {
   let profile = JSON.parse(localStorage.getItem('user')) ;
   //let actualPostId = window.location.href.split("post/").pop();
-  let actualPostId = value.value.value.postId;
+  let actualPostId = value.value.postId;
+  console.log(actualPostId);
   const {
     register, 
     handleSubmit, 

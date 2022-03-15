@@ -2,7 +2,7 @@ import TemplatePost from '../components/Post/TemplatePost'
 import DisplayComments from '../components/Comments/DisplayComments'
 import React, { useEffect, useState } from 'react'
 import { getOnePost } from '../components/Post/postsAPI'
-
+import WriteComment from '../components/Comments/WriteComment'
 function UniquePost() 
 {
   const [post, setPost] = useState([]);
@@ -23,16 +23,18 @@ function UniquePost()
       }
       { loading?(<>
         <h1>CHARGEMENT EN COURS</h1>
-      <section>
-        <p>CHARGEMENT EN COURS</p>
-      </section>
+        <section>
+          <p>CHARGEMENT EN COURS</p>
+        </section>
       </>):(<>
       {//Lorsque la page est chargée
       }
         <h1>{post.title}</h1>
         <section>
-        <TemplatePost value={post} key={`${post.id}`}/>
-        <DisplayComments value={post} />
+          <TemplatePost value={post} key={`${post.id}`}/>
+          <h2>Commentaires</h2>
+          <WriteComment value={post}/>
+          <DisplayComments value={post} />
         </section>
       </>) }
     </main>
