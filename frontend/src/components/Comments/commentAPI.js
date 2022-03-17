@@ -1,5 +1,6 @@
-export async function getAllComments() {
-  return fetch('http://localhost:8080/api/comment/')
+export async function getAllComments(postId) {
+  //console.log(postId);
+  return fetch('http://localhost:8080/api/comment/'+postId)
     .then(data => data.json())
 }
 

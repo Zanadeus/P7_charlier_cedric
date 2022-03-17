@@ -1,10 +1,14 @@
 const db = require("../models");
 const Comment = db.comments;
-const Op = db.Sequelize.Op;
-const fs = require('fs');
 
 exports.getAllComments = (req, res, next) => {
-  Comment.findAll({include: ["posts"]})
+  console.log(req.params);
+  Comment.findAll(
+    { 
+      where: { postId: req.params.postId },
+      include: ["profile"]
+    },
+    )
   .then(
     (allComments) => {
       res.status(200).json(allComments);
@@ -41,7 +45,7 @@ exports.createComment = (req, res, next) => {
   const newComment = 
   {
     profileId : req.body.item.profileId,
-    postId: req.body.item.profileId,
+    postId: req.body.item.postId,
     text: req.body.item.text
   };
   Comment.create(newComment)

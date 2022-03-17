@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function DeletePostButton({value, isAdmin}){
-  //console.log(value);
+  //console.log(isAdmin);
   function deleteComment(item)
   {
     console.log("click !");

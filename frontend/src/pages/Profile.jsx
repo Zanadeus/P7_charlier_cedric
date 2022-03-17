@@ -13,8 +13,8 @@ function Profile() {
     getProfileFunction(userName)
     .then((response) => {
       setList(response);
-      console.log(response);
-      console.log(user);
+      //console.log(response);
+      //console.log(user);
     })
   }, [])
   

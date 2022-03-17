@@ -1,13 +1,12 @@
 const db = require("../models");
 const Post = db.posts;
-const Op = db.Sequelize.Op;
-const fs = require('fs');
 
 exports.getAllPosts = (req, res, next) => {
   Post.findAll(
-    {include: ["profile"]},
-    //{include: ["posts"]},
-    {order: [['postId', 'DESC']]}
+    {
+      include: ["profile", db.comments],
+      order: [['postId', 'DESC']] 
+    },
   )
   .then(
     (allPosts) => {
@@ -24,9 +23,10 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getOnePost = (req, res, next) => {
-  Post.findByPk(req.params.id, {include: ["profile"]})
+  Post.findByPk(req.params.id, {include: ["profile", db.comments]})
   .then(
     (onePost) => {
+      console.log(onePost);
       res.status(200).json(onePost);
     }
   )

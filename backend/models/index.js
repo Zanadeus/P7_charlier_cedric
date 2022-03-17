@@ -30,11 +30,11 @@ db.comments.belongsTo(db.posts, {
   foreignKey: "postId",
   as: "post"
 });
-/*
+
 db.profiles.hasMany(db.comments);
 db.comments.belongsTo(db.profiles, {
   foreignKey: "profileId",
   as: "profile"
 })
-*/
+
 module.exports = db;

@@ -2,12 +2,12 @@ import TemplateComment from './TemplateComment'
 import React, { useEffect, useState } from 'react'
 import { getAllComments } from './commentAPI'
 
-function DisplayComments(value) 
+function DisplayComments({isAdmin}) 
 {
   const [posts, setList] = useState([]);
 
   useEffect(() => {
-    getAllComments()
+    getAllComments(window.location.href.split("post/").pop())
     .then((response) => {
       console.log(response);
       setList(response);
@@ -19,7 +19,7 @@ function DisplayComments(value)
       {
         posts.map((item) => 
         (
-          <TemplateComment value={item} key={`${item.commentId}`} />
+          <TemplateComment value={item} isAdmin={isAdmin} key={`${item.commentId}`} />
         ))
       }
     </article>

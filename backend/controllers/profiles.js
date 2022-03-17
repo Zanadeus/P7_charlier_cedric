@@ -5,13 +5,13 @@ require('dotenv').config();
 
 const db = require("../models");
 const Profile = db.profiles;
-const Posts = db.posts;
-const Op = db.Sequelize.Op;
 
 exports.getOneProfile = (req, res, next) => {
   Profile.findOne(
-    { where: { userName: req.params.userName } },
-    { include: ["posts"]},
+    { 
+      where: { userName: req.params.userName },
+      include: ["posts"]
+    },
     )
   .then(
     (oneProfile) => {

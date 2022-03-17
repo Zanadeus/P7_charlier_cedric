@@ -4,9 +4,39 @@ import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-
 import { Outlet, Link } from 'react-router-dom'
 import DeleteCommentButton from './DeleteCommentButton'
 
-function TemplateComment({ value }){
+function TemplateComment({ value, isAdmin }){
   const comment = value;
-  //console.log(comment);
+  //console.log(isAdmin);
+
+  function timePastSinceCreation()
+  {
+    let dateUpdate = new Date(`${comment.createdAt}`);
+    let timeSincePost = (Date.now() - Date.parse(dateUpdate))/1000;//temps en secondes
+    if (timeSincePost < 60) 
+    {
+      return `${Math.floor(timeSincePost)} seconde(s)`//temps en minutes
+    }
+    else if ( (timeSincePost/60) < 60) 
+    {
+      return `${Math.floor(timeSincePost/60)} minute(s)`
+    }
+    else if ((timeSincePost/(60*60)) < 24) 
+    {
+      return `${Math.floor(timeSincePost/(60*60))} heure(s)`
+    }
+    else if ((timeSincePost/(60*60*24)) < 365) 
+    {
+      return `${Math.floor(timeSincePost/(60*60*24))} jour(s)`
+    }
+    else if ((timeSincePost/(60*60*24)) > 365) 
+    {
+      return `${Math.floor(timeSincePost/(60*60*24*365))} an(s)`
+    }
+    else
+    {
+      return `erreur`
+    }
+  }
 
   return(
     <div className='commentTemplate' >
@@ -18,10 +48,10 @@ function TemplateComment({ value }){
         <div className='comBody'>
           <div className="postHead">
             <p>
-              Publié par <Link to={`/profile/{comment.profile.userName}`} > <strong>{` {comment.profile.userName} `}</strong> </Link>
-              il y a
+              Publié par <Link to={`/profile/${comment.profile.userName}`} > <strong>{` ${comment.profile.userName} `}</strong> </Link>
+              il y a {timePastSinceCreation()}
             </p>
-            <DeleteCommentButton value={comment}/>
+            <DeleteCommentButton value={comment} isAdmin={isAdmin} />
           </div>
 
           <div className="post">{comment.text}</div>
