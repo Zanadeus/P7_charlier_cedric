@@ -51,7 +51,9 @@ function TemplateComment({ value, isAdmin }){
               Publié par <Link to={`/profile/${comment.profile.userName}`} > <strong>{` ${comment.profile.userName} `}</strong> </Link>
               il y a {timePastSinceCreation()}
             </p>
-            <DeleteCommentButton value={comment} isAdmin={isAdmin} />
+            {
+              (comment.profileId === JSON.parse(localStorage.getItem('user')).profileId || isAdmin === 1) && <DeleteCommentButton value={comment} isAdmin={isAdmin} />
+            }
           </div>
 
           <div className="post">{comment.text}</div>

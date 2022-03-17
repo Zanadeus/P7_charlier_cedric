@@ -59,6 +59,29 @@ export async function signinFunction(user)
     alert('erreur depuis accountAPI.js' + error);
   })
 }
+
+export default async function getPermissionsFunction(token) 
+{
+  //console.log("je vais vérifier vos droits");
+  return fetch('http://localhost:8080/api/account/permissions',
+  {
+    method: "GET",
+    headers: 
+    {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+  })
+  .then((data) => 
+  {
+    return data.json();
+  })
+  .catch(function(error)//catch errors
+  {
+    alert('erreur depuis authtAPI.js l63' + error);
+  })
+}
+
 /*
 export function getToken()
 {

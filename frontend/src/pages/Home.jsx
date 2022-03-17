@@ -3,22 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { getAllPosts } from '../components/Post/postsAPI'
 import { getProfileFunction } from '../components/Profile/profileAPI'
 
-function Feed() 
+function Feed({permissions}) 
 {
+  console.log(permissions);
   const [posts, setList] = useState([]);
   useEffect(() => {
     getAllPosts()
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       setList(response);
-    })
-  }, [])
-
-  const [isUserAdmin, setIsAdmin] = useState(0);
-  useEffect(() => {
-    getProfileFunction(JSON.parse(localStorage.getItem('user')).userName)
-    .then((profile) => {
-      setIsAdmin(profile.admin);
     })
   }, [])
 
@@ -29,7 +22,7 @@ function Feed()
           {
             posts.map((item) => 
             (
-              <TemplatePost value={item} isAdmin={isUserAdmin} key={`${item.postId}`} />
+              <TemplatePost value={item} permissions={permissions} key={`${item.postId}`} />
             ))
           }
       </section>

@@ -58,14 +58,27 @@ exports.login = (req, res, next) => {
             },
             
             token: jwt.sign(
-              { userId: myUser.profileId,
-              admin: myUser.admin },
+              { 
+                userId: myUser.profileId,
+                admin: myUser.admin 
+              },
               process.env.ACCESS_TOKEN_SECRET,
               { expiresIn: '3600s' }
-            )+`/${myUser.admin}`//partie developpement, suppression possible
+            )
           });
         })
         .catch(error => res.status(500).json('erreur1 depuis accounts.js :' + { error }));
     })
     .catch(error => res.status(500).json('erreur2 depuis accounts.js :' +{ error }));
 };
+
+exports.checkPermissions = (req, res, next) => 
+{
+  //console.log(res.locals);
+  res.status(200).json(
+    {
+      message: 'Permission en cous de vérification',
+      profileId: res.locals.userId,
+      admin: res.locals.admin
+    });
+}

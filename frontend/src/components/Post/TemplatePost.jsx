@@ -4,10 +4,10 @@ import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-
 import { Outlet, Link } from 'react-router-dom'
 import DeletePostButton from './DeletePostButton'
 
-function TemplatePost({ value, isAdmin }){
+function TemplatePost({ value, permissions }){
   const post = value;
-  //console.log(isAdmin);
-  //console.log(post);
+  console.log(permissions.admin);
+  console.log(permissions.profileId);
 
   function timePastSinceCreation()
   {
@@ -52,7 +52,10 @@ function TemplatePost({ value, isAdmin }){
               Publié par <Link to={`/profile/${post.profile.userName}`} > <strong>{` ${post.profile.userName} `}</strong> </Link>
               il y a {timePastSinceCreation()}
             </p>
-            <DeletePostButton value={post} isAdmin={isAdmin}/>
+            {
+              (post.profileId === permissions.profileId || permissions.admin === 1) && <DeletePostButton value={post}/>
+            }
+            
           </div>
           
           <Link to={`/post/${post.postId}`} >
