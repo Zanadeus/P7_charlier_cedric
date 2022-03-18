@@ -3,9 +3,8 @@ import DisplayComments from '../components/Comments/DisplayComments'
 import React, { useEffect, useState } from 'react'
 import { getOnePost } from '../components/Post/postsAPI'
 import WriteComment from '../components/Comments/WriteComment'
-import { getProfileFunction } from '../components/Profile/profileAPI'
 
-function UniquePost() 
+function DisplayOnePost({permissions}) 
 {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,21 +12,12 @@ function UniquePost()
   useEffect(() => {
     getOnePost(window.location.href.split("post/").pop())
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       setPost(response);
       setLoading(false);
     })
   }, [])
 
-  const [isUserAdmin, setIsAdmin] = useState(0);
-  useEffect(() => {
-    getProfileFunction(JSON.parse(localStorage.getItem('user')).userName)
-    .then((profile) => {
-      setIsAdmin(profile.admin);
-    })
-  }, [])
-
-  //console.log(isUserAdmin);
   return (
     <main id="feed"> 
       {//SI la page est en cours de chargement :
@@ -42,14 +32,14 @@ function UniquePost()
       }
         <h1>{post.title}</h1>
         <section>
-          <TemplatePost value={post} isAdmin={isUserAdmin} key={`${post.id}`}/>
+          <TemplatePost value={post} permissions={permissions} key={`${post.id}`}/>
           <h2>Commentaires</h2>
           <WriteComment value={post}/>
-          <DisplayComments value={post} isAdmin={isUserAdmin} />
+          <DisplayComments value={post} permissions={permissions} />
         </section>
       </>) }
     </main>
   )
 }
 
-export default UniquePost
+export default DisplayOnePost

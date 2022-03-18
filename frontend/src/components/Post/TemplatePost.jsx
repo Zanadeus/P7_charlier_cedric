@@ -6,8 +6,8 @@ import DeletePostButton from './DeletePostButton'
 
 function TemplatePost({ value, permissions }){
   const post = value;
-  console.log(permissions.admin);
-  console.log(permissions.profileId);
+  //console.log(permissions.admin);
+  //console.log(permissions.profileId);
 
   function timePastSinceCreation()
   {

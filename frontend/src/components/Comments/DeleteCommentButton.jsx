@@ -2,8 +2,7 @@ import { deleteCommentFunction } from './commentAPI'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function DeleteCommentButton({value, isAdmin}){
-  //console.log(isAdmin);
+function DeleteCommentButton({value}){
 
   function deleteComment(item)
   {
@@ -17,20 +16,13 @@ function DeleteCommentButton({value, isAdmin}){
       })
   }
 
-  if ( value.profileId === JSON.parse(localStorage.getItem('user')).profileId 
-  || isAdmin === 1) 
-  {
-    return (
-      <button className="fontAwesomeSize" onClick={() =>
-        deleteComment(value)
-      }>
-        <FontAwesomeIcon icon={faTrash} />
-      </button>
-    )
-  }
-  else{
-    return("")
-  }
+  return (
+    <button className="fontAwesomeSize" onClick={() =>
+      deleteComment(value)
+    }>
+      <FontAwesomeIcon icon={faTrash} />
+    </button>
+  )
 }
 
 export default DeleteCommentButton

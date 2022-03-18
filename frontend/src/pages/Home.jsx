@@ -5,7 +5,7 @@ import { getProfileFunction } from '../components/Profile/profileAPI'
 
 function Feed({permissions}) 
 {
-  console.log(permissions);
+  //console.log(permissions);
   const [posts, setList] = useState([]);
   useEffect(() => {
     getAllPosts()

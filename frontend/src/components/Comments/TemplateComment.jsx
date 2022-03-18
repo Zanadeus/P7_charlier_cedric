@@ -4,9 +4,8 @@ import { faCircleArrowDown, faCircleArrowUp } from '@fortawesome/free-solid-svg-
 import { Outlet, Link } from 'react-router-dom'
 import DeleteCommentButton from './DeleteCommentButton'
 
-function TemplateComment({ value, isAdmin }){
+function TemplateComment({ value, permissions }){
   const comment = value;
-  //console.log(isAdmin);
 
   function timePastSinceCreation()
   {
@@ -52,7 +51,7 @@ function TemplateComment({ value, isAdmin }){
               il y a {timePastSinceCreation()}
             </p>
             {
-              (comment.profileId === JSON.parse(localStorage.getItem('user')).profileId || isAdmin === 1) && <DeleteCommentButton value={comment} isAdmin={isAdmin} />
+              (comment.profileId === permissions.profileId || permissions.admin === 1) && <DeleteCommentButton value={comment} />
             }
           </div>
 

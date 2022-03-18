@@ -11,7 +11,7 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Logout from "./pages/Logout"
 import CreatePost from "./pages/CreatePost"
-import UniquePost from "./pages/DisplayOnePost"
+import DisplayOnePost from "./pages/DisplayOnePost"
 
 import getPermissionsFunction from "./components/User/authAPI"
 //import CheckPermissions from './CheckPermissions'
@@ -41,9 +41,9 @@ function App()
         <Routes>
           <Route exact path="/" element={<Home permissions={permissions}/>} />
           <Route exact path="/profile/:pseudo" element={<Profile permissions={permissions} />} />
-          <Route exact path="/logout" element={<Logout permissions={permissions} />} />
+          <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/createPost" element={<CreatePost permissions={permissions} />} />
-          <Route exact path="/post/:id" element={<UniquePost permissions={permissions} />} />
+          <Route exact path="/post/:id" element={<DisplayOnePost permissions={permissions} />} />
 
           <Route exact path="*" element={<Pagenotfound />} />
         </Routes>
