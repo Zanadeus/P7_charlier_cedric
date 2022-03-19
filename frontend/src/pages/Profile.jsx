@@ -7,8 +7,6 @@ function Profile({permissions})
   const [user, setList] = useState([]);
   let profile = JSON.parse(localStorage.getItem('user')) ;
   let userName = window.location.href.split("profile/").pop();
-  console.log(user);
-  console.log(userName);
   
   //rendering pour aller chercher les informations utilisateurs dans la BDD
   useEffect(() => {
@@ -29,11 +27,9 @@ function Profile({permissions})
   //au clic sur le bouton "modifier profil", fonction de mise à jour du profil et reload de la page
   function submitForm(data)
   {
-    console.log(data);
     updateProfileFunction(data)
     .then((response) => 
     {
-      console.log(response);
       profile.userName = response.userName ;
       profile.email = response.email ;
       localStorage.setItem('user', JSON.stringify(profile));
@@ -45,13 +41,11 @@ function Profile({permissions})
   //au clic sur le bouton "supprimer profil", fonction de suppression du profil et reload sur la page de déconnexion
   function deleteUser(data)
   {
-    console.log(data);
     deleteProfileFunction(data)
     .then((response) => 
     {
-      console.log(response);
-      //window.location.reload();
-      //window.location.replace(`/logout`);
+      window.location.reload();
+      window.location.replace(`/logout`);
     })
   }
   //appel des éléments du formulaire

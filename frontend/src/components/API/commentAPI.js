@@ -1,5 +1,4 @@
 export async function getAllComments(postId) {
-  //console.log(postId);
   return fetch('http://localhost:8080/api/comment/'+postId)
     .then(data => data.json())
 }
@@ -10,7 +9,6 @@ export async function getOneComment(pageId) {
 }
 */
 export async function createCommentFunction(item) {
-  console.log(item);
   return fetch('http://localhost:8080/api/comment/', {
     method: 'POST',
     headers: {

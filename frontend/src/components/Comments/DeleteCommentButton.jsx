@@ -6,12 +6,9 @@ function DeleteCommentButton({value}){
 
   function deleteComment(item)
   {
-    console.log("click !");
-    console.log(item);
     deleteCommentFunction(item.commentId)
-      .then((response) => 
+      .then(() => 
       {
-        console.log(response);
         window.location.reload();
       })
   }

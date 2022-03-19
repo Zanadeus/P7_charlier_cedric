@@ -10,15 +10,6 @@ function CreatePost({permissions})
     formState: {errors} 
   } = useForm();
 
-  function submitForm(data)
-  {
-    createPostFunction(data)
-    .then((response) => 
-    {
-      console.log(response);
-    })
-  }
-
   return (
     <main id="feed">
       <h1>Créer une publication sur Groupomania</h1>
@@ -26,8 +17,7 @@ function CreatePost({permissions})
         <article>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
             data.profileId = permissions.profileId;
-            console.log(data);
-            submitForm(data);
+            createPostFunction(data);
           })}>
             <div >
             <label htmlFor="title">titre: </label><br/>

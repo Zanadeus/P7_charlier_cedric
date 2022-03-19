@@ -1,6 +1,5 @@
 export async function updateProfileFunction(user)
 {
-  console.log(user);
   return fetch (`http://localhost:8080/api/profile/${user.lastPseudo}`,
   {
     method: "PUT",
@@ -39,8 +38,6 @@ export async function getProfileFunction(user)
 
 export async function deleteProfileFunction(user)
 {
-  console.log(user);
-  console.log(user.userName);
   return fetch (`http://localhost:8080/api/profile/${user.userName}`, {
     method: 'DELETE',
     headers: {

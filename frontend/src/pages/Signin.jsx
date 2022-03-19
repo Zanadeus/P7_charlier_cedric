@@ -10,15 +10,6 @@ function Signin()
     formState: {errors} 
   } = useForm();
 
-  function signinUser(data)
-  {
-    signinFunction(data)
-    .then((response) => 
-    {
-      console.log(response);
-    })
-  }
-
   return (
     <main>
       <h1>Créer un compte Groupomania</h1>
@@ -26,10 +17,9 @@ function Signin()
         <article>
           <h2>Connectez-vous pour voir plus de contenu ou en partager</h2>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-            console.log(data);
             if (data.password1 === data.password2) 
             {
-              signinUser(data);
+              signinFunction(data);
               alert("Merci pour votre inscription, vous pouvez maintenant vous connecter !")
             }
             else

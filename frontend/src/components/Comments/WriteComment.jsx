@@ -9,22 +9,13 @@ function WriteComment({value, permissions})
     handleSubmit, 
   } = useForm();
 
-  function submitForm(data)
-  {
-    createCommentFunction(data)
-    .then((response) => 
-    {
-      console.log(response);
-    })
-  }
-
   return (
   <article>
     <h2>Commenter en tant que </h2>
     <form id="submitForm" onSubmit={handleSubmit((data) => {
       data.profileId = permissions.profileId;
       data.postId = value.postId;
-      submitForm(data);
+      createCommentFunction(data)
       })}>
       <div >
         <label htmlFor="text">texte: </label><br/>

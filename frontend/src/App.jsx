@@ -23,14 +23,12 @@ function App()
   useEffect(() => {
     if (token)
     {
-      //console.log(token);
       getPermissionsFunction(token)
       .then((response) => {
         setPermissions(response);
       })
     }
   }, [])
-  console.log(permissions);
 
   if (token) {
     return (

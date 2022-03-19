@@ -4,12 +4,10 @@ import { getAllPosts } from '../components/API/postsAPI'
 
 function Feed({permissions}) 
 {
-  //console.log(permissions);
   const [posts, setList] = useState([]);
   useEffect(() => {
     getAllPosts()
     .then((response) => {
-      //console.log(response);
       setList(response);
     })
   }, [])

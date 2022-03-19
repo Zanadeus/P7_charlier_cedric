@@ -26,7 +26,6 @@ exports.getOnePost = (req, res, next) => {
   Post.findByPk(req.params.id, {include: ["profile", db.comments]})
   .then(
     (onePost) => {
-      console.log(onePost);
       res.status(200).json(onePost);
     }
   )
@@ -40,8 +39,6 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body);
-  console.log(req.body.item);
   const newPost = 
   {
     profileId: req.body.item.profileId,
@@ -138,7 +135,7 @@ exports.setLike = (req, res, next) =>
       break;
 
       default:
-        console.log('case non configuré');
+        console.log('cas non configuré');
       break
 
   }

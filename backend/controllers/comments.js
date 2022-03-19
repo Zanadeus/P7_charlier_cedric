@@ -2,7 +2,6 @@ const db = require("../models");
 const Comment = db.comments;
 
 exports.getAllComments = (req, res, next) => {
-  console.log(req.params);
   Comment.findAll(
     { 
       where: { postId: req.params.postId },
@@ -40,8 +39,6 @@ exports.getOneComment = (req, res, next) => {
 };
 */
 exports.createComment = (req, res, next) => {
-  console.log(req.body);
-  console.log(req.body.item);
   const newComment = 
   {
     profileId : req.body.item.profileId,
@@ -73,7 +70,6 @@ exports.modifyComment = (req, res, next) => {
 
 exports.deleteComment = (req, res, next) => 
 {
-  console.log(req.params.id);
   Comment.destroy({where: {commentId: req.params.id}})
   .then(() => res.status(200).json({ message: 'Comment deleted !'}))
   .catch(error => res.status(400).json({ error }));
@@ -139,7 +135,7 @@ exports.setLike = (req, res, next) =>
       break;
 
       default:
-        console.log('case non configuré');
+        console.log('cas non configuré');
       break
 
   }

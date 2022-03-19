@@ -8,7 +8,6 @@ const Op = db.Sequelize.Op;
 
 exports.signup = (req, res, next) => 
 {
-  console.log(req.body);
   if (req.body.password.length < 8 || req.body.password.length > 30)
   {
     return res.status(400).json({ message: 'Your password need to contain 8 to 30 characters' });
@@ -31,11 +30,9 @@ exports.signup = (req, res, next) =>
 };
 
 exports.login = (req, res, next) => {
-  console.log(req.body);
   Profile.findOne({ where: {email: req.body.email }})
     .then(myUser => 
     {
-      console.log(myUser);
       if (!myUser) 
       {
         return res.status(401).json({ message: 'wrong email or password' });
@@ -72,7 +69,6 @@ exports.login = (req, res, next) => {
 
 exports.checkPermissions = (req, res, next) => 
 {
-  //console.log(res.locals);
   res.status(200).json(
     {
       message: 'Permission en cous de vérification',

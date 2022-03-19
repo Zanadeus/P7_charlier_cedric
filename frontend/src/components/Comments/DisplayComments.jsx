@@ -9,7 +9,6 @@ function DisplayComments({permissions})
   useEffect(() => {
     getAllComments(window.location.href.split("post/").pop())
     .then((response) => {
-      console.log(response);
       setList(response);
     })
   }, [])

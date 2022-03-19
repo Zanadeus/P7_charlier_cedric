@@ -6,8 +6,6 @@ import DeletePostButton from './DeletePostButton'
 
 function TemplatePost({ value, permissions }){
   const post = value;
-  //console.log(permissions.admin);
-  //console.log(permissions.profileId);
 
   function timePastSinceCreation()
   {
@@ -42,9 +40,17 @@ function TemplatePost({ value, permissions }){
   return(
     <article className='postTemplate' >
         <div className="likesBar">
-          <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowUp} /></span>
+          <span className="fontAwesomeSize" onClick={() =>
+            console.log("on veut mettre un like")
+          }>
+          <FontAwesomeIcon icon={faCircleArrowUp} />
+          </span>
           <p>{post.likes}</p>
-          <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowDown} /></span>
+          <span className="fontAwesomeSize" onClick={() =>
+            console.log("on veut mettre un dislike")
+          }>
+            <FontAwesomeIcon icon={faCircleArrowDown} />
+          </span>
         </div>
         <div className='postBody'>
           <div className="postHead">

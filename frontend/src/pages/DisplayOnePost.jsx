@@ -12,7 +12,6 @@ function DisplayOnePost({permissions})
   useEffect(() => {
     getOnePost(window.location.href.split("post/").pop())
     .then((response) => {
-      //console.log(response);
       setPost(response);
       setLoading(false);
     })

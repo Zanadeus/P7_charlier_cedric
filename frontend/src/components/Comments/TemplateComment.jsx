@@ -40,9 +40,17 @@ function TemplateComment({ value, permissions }){
   return(
     <div className='commentTemplate' >
         <div className="likesBar">
-          <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowUp} /></span>
+          <span className="fontAwesomeSize" onClick={() =>
+            console.log("tu veux mettre un like")
+          }>
+          <FontAwesomeIcon icon={faCircleArrowUp} />
+          </span>
           <p>{comment.likes}</p>
-          <span className="fontAwesomeSize"><FontAwesomeIcon icon={faCircleArrowDown} /></span>
+          <span className="fontAwesomeSize" onClick={() =>
+            console.log("tu veux mettre un dislike")
+          }>
+            <FontAwesomeIcon icon={faCircleArrowDown} />
+          </span>
         </div>
         <div className='comBody'>
           <div className="postHead">

@@ -5,13 +5,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 function DeletePostButton({value}){
   function deleteComment(item)
   {
-    console.log("click !");
-    console.log(item);
     deletePostFunction(item.postId)
-      .then((response) => 
+      .then(() => 
       {
-        console.log(response);
-        //window.location.reload();
+        window.location.reload();
       })
   }
 
