@@ -15,8 +15,6 @@ function Profile({permissions})
     getProfileFunction(userName)
     .then((response) => {
       setList(response);
-      //console.log(response);
-      //console.log(user);
     })
   }, [])
   

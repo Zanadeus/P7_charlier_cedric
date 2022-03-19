@@ -61,7 +61,7 @@ function TemplatePost({ value, permissions }){
           <Link to={`/post/${post.postId}`} >
             <h2>{post.title}</h2>
             <div className="post">{post.text}</div>
-            <p className="postFeet">{post.commentNumber} Commentaire(s) {post.creationDate}</p>
+            <p className="postFeet"> {/*{post.commentNumber} Commentaire(s) */} </p>
           </Link>
         </div>
       <Outlet />

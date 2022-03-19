@@ -34,7 +34,7 @@ function DisplayOnePost({permissions})
         <section>
           <TemplatePost value={post} permissions={permissions} key={`${post.id}`}/>
           <h2>Commentaires</h2>
-          <WriteComment value={post}/>
+          <WriteComment value={post} permissions={permissions}/>
           <DisplayComments value={post} permissions={permissions} />
         </section>
       </>) }

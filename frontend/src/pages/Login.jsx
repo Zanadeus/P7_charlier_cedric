@@ -18,29 +18,10 @@ function Login()
     loginFunction(data)
     .then((response) => 
     {
-      console.log(response);
       if (response.token) 
       {
         localStorage.setItem('token', response.token);
-        console.log("ceci est response.user : ");
-        console.log(response.user);
         localStorage.setItem('user', JSON.stringify(response.user));
-        
-        /*
-        let userObject = JSON.stringify(response.user);
-        console.log("ceci est userObject string : ");
-        console.log(userObject);
-
-        localStorage.setItem('user', userObject);
-        let testUser = localStorage.getItem('user');
-        console.log("ceci est localStorage user : ");
-        console.log(testUser);
-        console.log(JSON.parse(testUser));
-        
-        let newUserObject = JSON.parse(testUser);
-        newUserObject.userName = 'Cobra12';
-        console.log(newUserObject);
-        */
         window.location.reload();
         window.location.replace("/");
       }

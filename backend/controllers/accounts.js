@@ -53,8 +53,7 @@ exports.login = (req, res, next) => {
             message: 'Utilisateur connecté !',
             user: {
               userName: myUser.userName,
-              email: myUser.email,
-              profileId: myUser.profileId
+              email: myUser.email
             },
             
             token: jwt.sign(

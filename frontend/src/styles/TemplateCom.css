@@ -32,10 +32,11 @@
 }
 .commentTemplate .postHead
 {
-  height: 20px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 .commentTemplate .postFeet
 {
@@ -45,5 +46,6 @@
 }
 .fontAwesomeSize
 {
+  
   font-size: 1.5em;
 }

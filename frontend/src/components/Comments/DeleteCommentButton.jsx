@@ -17,11 +17,11 @@ function DeleteCommentButton({value}){
   }
 
   return (
-    <button className="fontAwesomeSize" onClick={() =>
+    <span className="fontAwesomeSize" onClick={() =>
       deleteComment(value)
     }>
       <FontAwesomeIcon icon={faTrash} />
-    </button>
+    </span>
   )
 }
 

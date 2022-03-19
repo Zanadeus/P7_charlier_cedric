@@ -1,7 +1,6 @@
 import TemplatePost from '../components/Post/TemplatePost'
 import React, { useEffect, useState } from 'react'
 import { getAllPosts } from '../components/Post/postsAPI'
-import { getProfileFunction } from '../components/Profile/profileAPI'
 
 function Feed({permissions}) 
 {

@@ -2,10 +2,8 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import { createPostFunction } from '../components/Post/postsAPI';
 
-function CreatePost() 
+function CreatePost({permissions}) 
 {
-  let profile = JSON.parse(localStorage.getItem('user')) ;
-
   const {
     register, 
     handleSubmit, 
@@ -14,7 +12,6 @@ function CreatePost()
 
   function submitForm(data)
   {
-    console.log("coucou");
     createPostFunction(data)
     .then((response) => 
     {
@@ -28,7 +25,7 @@ function CreatePost()
       <section>
         <article>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
-            data.profileId = profile.profileId;
+            data.profileId = permissions.profileId;
             console.log(data);
             submitForm(data);
           })}>

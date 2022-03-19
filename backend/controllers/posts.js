@@ -53,6 +53,14 @@ exports.createPost = (req, res, next) => {
   .catch(error => res.status(400).json({ message: error }));
 };
 
+exports.deletePost = (req, res, next) => 
+{
+  Post.destroy({where: {postId: req.params.id}})
+  .then(() => res.status(200).json({ message: 'Post deleted !'}))
+  .catch(error => res.status(400).json({ error }));
+};
+
+/*
 exports.modifyPost = (req, res, next) => {
   const postObject = req.file ?
   {
@@ -68,32 +76,7 @@ exports.modifyPost = (req, res, next) => {
   .then(() => res.status(200).json({ message: 'Objet modifié !'}))
   .catch(error => res.status(400).json({ error }));
 };
-
-exports.deletePost = (req, res, next) => 
-{
-  Post.destroy({where: {postId: req.params.id}})
-  .then(() => res.status(200).json({ message: 'Post deleted !'}))
-  .catch(error => res.status(400).json({ error }));
-
-  /*
-  Post.findOne({ _id: req.params.id })
-    .then(post => 
-    {
-      if (res.locals.userId !== post.userId) 
-      {
-        return res.status(403).json({ message : 'Invalid user ID' });
-      }
-      const filename = post.imageUrl.split('/pictures/')[1];
-      fs.unlink(`pictures/${filename}`, () => 
-      {
-        Post.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Post deleted !'}))
-          .catch(error => res.status(400).json({ error }));
-      });
-    })
-    .catch(error => res.status(500).json({ error }));
-    */
-};
+*/
 
 exports.setLike = (req, res, next) => 
 {

@@ -2,11 +2,8 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import { createCommentFunction } from './commentAPI';
 
-function WriteComment(value) 
+function WriteComment({value, permissions}) 
 {
-  let profile = JSON.parse(localStorage.getItem('user')) ;
-  //let actualPostId = window.location.href.split("post/").pop();
-  let actualPostId = value.value.postId;
   const {
     register, 
     handleSubmit, 
@@ -25,8 +22,8 @@ function WriteComment(value)
   <article>
     <h2>Commenter en tant que </h2>
     <form id="submitForm" onSubmit={handleSubmit((data) => {
-      data.profileId = profile.profileId;
-      data.postId = actualPostId;
+      data.profileId = permissions.profileId;
+      data.postId = value.postId;
       submitForm(data);
       })}>
       <div >
