@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import { createCommentFunction } from './commentAPI';
+import { createCommentFunction } from '../API/commentAPI';
 
 function WriteComment({value, permissions}) 
 {

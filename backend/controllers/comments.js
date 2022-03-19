@@ -22,7 +22,7 @@ exports.getAllComments = (req, res, next) => {
     }
   );
 };
-
+/*
 exports.getOneComment = (req, res, next) => {
   Comment.findByPk(req.params.id, {include: ["profile"]})
   .then(
@@ -38,7 +38,7 @@ exports.getOneComment = (req, res, next) => {
     }
   );
 };
-
+*/
 exports.createComment = (req, res, next) => {
   console.log(req.body);
   console.log(req.body.item);
@@ -53,6 +53,7 @@ exports.createComment = (req, res, next) => {
   .catch(error => res.status(400).json({ message: error }));
 };
 
+/*
 exports.modifyComment = (req, res, next) => {
   const commentObject = req.file ?
   {
@@ -68,6 +69,7 @@ exports.modifyComment = (req, res, next) => {
   .then(() => res.status(200).json({ message: 'Objet modifié !'}))
   .catch(error => res.status(400).json({ error }));
 };
+*/
 
 exports.deleteComment = (req, res, next) => 
 {
@@ -75,24 +77,6 @@ exports.deleteComment = (req, res, next) =>
   Comment.destroy({where: {commentId: req.params.id}})
   .then(() => res.status(200).json({ message: 'Comment deleted !'}))
   .catch(error => res.status(400).json({ error }));
-  /*
-  Comment.findOne({ _id: req.params.id })
-    .then(comment => 
-    {
-      if (res.locals.userId !== comment.userId) 
-      {
-        return res.status(403).json({ message : 'Invalid user ID' });
-      }
-      const filename = comment.imageUrl.split('/pictures/')[1];
-      fs.unlink(`pictures/${filename}`, () => 
-      {
-        Comment.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Comment deleted !'}))
-          .catch(error => res.status(400).json({ error }));
-      });
-    })
-    .catch(error => res.status(500).json({ error }));
-    */
 };
 
 exports.setLike = (req, res, next) => 

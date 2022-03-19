@@ -13,8 +13,7 @@ import Logout from "./pages/Logout"
 import CreatePost from "./pages/CreatePost"
 import DisplayOnePost from "./pages/DisplayOnePost"
 
-import getPermissionsFunction from "./components/User/authAPI"
-//import CheckPermissions from './CheckPermissions'
+import getPermissionsFunction from "./components/API/authAPI"
 
 function App() 
 {

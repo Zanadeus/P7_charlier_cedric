@@ -1,6 +1,6 @@
 import TemplatePost from '../components/Post/TemplatePost'
 import React, { useEffect, useState } from 'react'
-import { getAllPosts } from '../components/Post/postsAPI'
+import { getAllPosts } from '../components/API/postsAPI'
 
 function Feed({permissions}) 
 {

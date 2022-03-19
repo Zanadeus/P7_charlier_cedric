@@ -3,12 +3,12 @@ export async function getAllComments(postId) {
   return fetch('http://localhost:8080/api/comment/'+postId)
     .then(data => data.json())
 }
-
+/*
 export async function getOneComment(pageId) {
   return fetch('http://localhost:8080/api/comment/'+pageId)
     .then(data => data.json())
 }
-
+*/
 export async function createCommentFunction(item) {
   console.log(item);
   return fetch('http://localhost:8080/api/comment/', {

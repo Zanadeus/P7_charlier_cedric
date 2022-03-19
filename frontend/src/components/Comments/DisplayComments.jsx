@@ -1,6 +1,6 @@
 import TemplateComment from './TemplateComment'
 import React, { useEffect, useState } from 'react'
-import { getAllComments } from './commentAPI'
+import { getAllComments } from '../API/commentAPI'
 
 function DisplayComments({permissions}) 
 {

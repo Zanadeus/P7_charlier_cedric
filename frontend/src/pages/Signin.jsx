@@ -1,4 +1,4 @@
-import { signinFunction } from '../components/User/authAPI'
+import { signinFunction } from '../components/API/authAPI'
 import { useForm } from "react-hook-form";
 
 function Signin() 

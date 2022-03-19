@@ -1,7 +1,7 @@
 import TemplatePost from '../components/Post/TemplatePost'
 import DisplayComments from '../components/Comments/DisplayComments'
 import React, { useEffect, useState } from 'react'
-import { getOnePost } from '../components/Post/postsAPI'
+import { getOnePost } from '../components/API/postsAPI'
 import WriteComment from '../components/Comments/WriteComment'
 
 function DisplayOnePost({permissions}) 
