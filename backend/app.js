@@ -29,13 +29,13 @@ app.use((req, res, next) =>
 
 //limiter le nombre de requêtes (attaques DDOS)
 const antiDDOS = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 150 // limiter à 100 requêtes
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 300 // limiter à 300 requêtes, soit 1req/s
 });
 app.use(antiDDOS);
 const antiForcageId = rateLimit({
-  windowMs: 5 * 60 * 1000,
-  max: 5
+  windowMs: 15 * 60 * 1000, //15min
+  max: 15 //1req/min
 });
 
 //equivalent body-parser
@@ -52,7 +52,7 @@ const commentsRoads = require('./roads/comments');
 
 //API path
 app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
-app.use('/api/account', /*antiForcageId,*/ helmet(), accountRoads);
+app.use('/api/account', antiForcageId, helmet(), accountRoads);
 app.use('/api/profile', helmet(), profileRoads);
 app.use('/api/post', helmet(), postsRoads);
 app.use('/api/comment', helmet(), commentsRoads);

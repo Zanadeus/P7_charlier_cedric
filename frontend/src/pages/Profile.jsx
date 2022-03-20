@@ -33,6 +33,7 @@ function Profile({permissions})
       profile.userName = response.userName ;
       profile.email = response.email ;
       localStorage.setItem('user', JSON.stringify(profile));
+      alert("Le profil a bien été modifié");
       window.location.reload();
       window.location.replace(`/profile/${response.userName}`);
     })

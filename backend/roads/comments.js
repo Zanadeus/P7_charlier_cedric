@@ -5,11 +5,11 @@ const multer = require('../middleware/multerConfig');
 
 const commentsCtrl = require('../controllers/comments');
 
-router.get('/:postId', /*auth, */commentsCtrl.getAllComments);
-//router.get('/:id', /*auth, */commentsCtrl.getOneComment);
-router.post('/', /*auth, */multer, commentsCtrl.createComment);
-//router.put('/:id', /*auth, */multer, commentsCtrl.modifyComment);
-router.delete('/:id', /*auth, */multer, commentsCtrl.deleteComment);
-router.post('/:id/like', /*auth, */multer, commentsCtrl.setLike);
+router.get('/:postId', auth, commentsCtrl.getAllComments);
+//router.get('/:id', auth, commentsCtrl.getOneComment);
+router.post('/', auth, multer, commentsCtrl.createComment);
+//router.put('/:id', auth, multer, commentsCtrl.modifyComment);
+router.delete('/:id', auth, multer, commentsCtrl.deleteComment);
+//router.post('/:id/like', auth, commentsCtrl.setLike);
 
 module.exports = router;

@@ -17,7 +17,10 @@ function CreatePost({permissions})
         <article>
           <form id="submitForm" onSubmit={handleSubmit((data) => {
             data.profileId = permissions.profileId;
-            createPostFunction(data);
+            createPostFunction(data)
+            .then((response) => {
+              alert(response);
+            })
           })}>
             <div >
             <label htmlFor="title">titre: </label><br/>

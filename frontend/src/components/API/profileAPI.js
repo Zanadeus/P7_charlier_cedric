@@ -6,8 +6,8 @@ export async function updateProfileFunction(user)
     method: "PUT",
     headers: 
     {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     },
     body: JSON.stringify(
     { 
@@ -26,7 +26,14 @@ export async function updateProfileFunction(user)
 
 export async function getProfileFunction(user)
 {
-  return fetch (`http://localhost:8080/api/profile/${user}`)
+  return fetch (`http://localhost:8080/api/profile/${user}`, {
+    method: "GET",
+    headers: 
+    {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+  })
   .then((response) => 
   {
     return response.json();

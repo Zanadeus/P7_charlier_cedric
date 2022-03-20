@@ -30,7 +30,6 @@ export async function loginFunction(user)
 
 export async function signinFunction(user)
 {
-  console.log(user);
   const userName = user.userName;
   const email = user.email;
   const password = user.password1;
@@ -51,7 +50,6 @@ export async function signinFunction(user)
   })
   .then((response) => 
   {
-    console.log(response.json);
     return response.json();
   })
   .catch(function(error)//catch errors
@@ -62,7 +60,6 @@ export async function signinFunction(user)
 
 export default async function getPermissionsFunction(token) 
 {
-  //console.log("je vais vérifier vos droits");
   return fetch('http://localhost:8080/api/account/permissions',
   {
     method: "GET",

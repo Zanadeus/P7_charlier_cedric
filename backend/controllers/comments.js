@@ -5,7 +5,8 @@ exports.getAllComments = (req, res, next) => {
   Comment.findAll(
     { 
       where: { postId: req.params.postId },
-      include: ["profile"]
+      include: ["profile"],
+      order: [['commentId', 'DESC']] 
     },
     )
   .then(
@@ -75,6 +76,7 @@ exports.deleteComment = (req, res, next) =>
   .catch(error => res.status(400).json({ error }));
 };
 
+/*
 exports.setLike = (req, res, next) => 
 {
   const userID = req.body.userId;
@@ -140,3 +142,4 @@ exports.setLike = (req, res, next) =>
 
   }
 };
+*/

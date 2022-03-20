@@ -74,7 +74,7 @@ exports.modifyPost = (req, res, next) => {
   .catch(error => res.status(400).json({ error }));
 };
 */
-
+/*
 exports.setLike = (req, res, next) => 
 {
   const userID = req.body.userId;
@@ -140,3 +140,4 @@ exports.setLike = (req, res, next) =>
 
   }
 };
+*/
