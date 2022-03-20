@@ -1,5 +1,3 @@
-//require('dotenv').config();
-
 module.exports = {
   HOST: "localhost",
   USER: "CHARLIER",
