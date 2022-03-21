@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import { createPostFunction } from '../components/API/postsAPI';
+import { createPostFunction } from '../API/postsAPI';
 
 function CreatePost({permissions}) 
 {
@@ -19,7 +19,7 @@ function CreatePost({permissions})
             data.profileId = permissions.profileId;
             createPostFunction(data)
             .then((response) => {
-              alert(response);
+              alert(response.message);
             })
           })}>
             <div >

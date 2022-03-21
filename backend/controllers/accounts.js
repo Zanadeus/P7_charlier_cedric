@@ -43,7 +43,6 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ message: 'wrong password or email' });
           }
-          //res.setHeader('Authorization', 'Bearer '+ newToken);
           res.status(200).json(
           {
             message: 'Utilisateur connecté !',

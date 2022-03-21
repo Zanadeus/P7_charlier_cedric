@@ -13,7 +13,7 @@ import Logout from "./pages/Logout"
 import CreatePost from "./pages/CreatePost"
 import DisplayOnePost from "./pages/DisplayOnePost"
 
-import getPermissionsFunction from "./components/API/authAPI"
+import getPermissionsFunction from "./API/authAPI"
 
 function App() 
 {
@@ -21,6 +21,7 @@ function App()
 
   const [permissions, setPermissions] = useState(0);
   useEffect(() => {
+    const token = localStorage.getItem('token');//react warning rectification ?
     if (token)
     {
       getPermissionsFunction(token)

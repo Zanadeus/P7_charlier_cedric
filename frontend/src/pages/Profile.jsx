@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import { getProfileFunction, updateProfileFunction, deleteProfileFunction } from '../components/API/profileAPI'
+import { getProfileFunction, updateProfileFunction, deleteProfileFunction } from '../API/profileAPI'
 
 function Profile({permissions}) 
 {
   const [user, setList] = useState([]);
   let profile = JSON.parse(localStorage.getItem('user')) ;
-  let userName = window.location.href.split("profile/").pop();
   
   //rendering pour aller chercher les informations utilisateurs dans la BDD
   useEffect(() => {
+    let userName = window.location.href.split("profile/").pop();
     getProfileFunction(userName)
     .then((response) => {
       setList(response);

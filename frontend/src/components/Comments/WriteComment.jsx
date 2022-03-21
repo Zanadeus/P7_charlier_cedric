@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import { createCommentFunction } from '../API/commentAPI';
+import { createCommentFunction } from '../../API/commentAPI';
 
 function WriteComment({value, permissions}) 
 {
@@ -9,9 +9,11 @@ function WriteComment({value, permissions})
     handleSubmit, 
   } = useForm();
 
+  const author = JSON.parse(localStorage.getItem('user')).userName;
+  console.log(author);
   return (
   <article>
-    <h2>Commenter en tant que </h2>
+    <h2>Commenter en tant que {author}</h2>
     <form id="submitForm" onSubmit={handleSubmit((data) => {
       data.profileId = permissions.profileId;
       data.postId = value.postId;
