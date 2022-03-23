@@ -9,6 +9,7 @@ function DeletePostButton({value}){
       .then(() => 
       {
         window.location.reload();
+        window.location.replace(`/`);
       })
   }
 
